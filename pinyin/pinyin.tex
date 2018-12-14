@@ -1,0 +1,157 @@
+\documentclass[zihao=-4,fontset=none]{ctexart}
+\usepackage{array,enumitem,geometry,longtable,makecell,xpinyin,hyperref}
+
+\setmainfont{FreeSerif}
+\setsansfont{FreeSans}
+\setCJKmainfont{FZShuSong-Z01}[ItalicFont=FZKai-Z03]
+\setCJKsansfont{FZHei-B01}
+\newCJKfontfamily\kaishu{FZKai-Z03}
+
+\pagestyle{plain}
+\ctexset{
+  punct=kaiming,
+  section/number=\chinese{section},
+  section/format=\large\sffamily\centering}
+\geometry{
+  a4paper,
+  vmargin=2.54cm,
+  hmargin=3.18cm,
+  headheight=15pt}
+\setlist[enumerate]{
+  label=(\arabic*),
+  parsep=0pt,
+  itemsep=0pt,
+  topsep=0pt}
+
+\newcolumntype{V}{!{\vrule width 1pt}}
+\newcolumntype{C}[1]{>{\centering\arraybackslash}m{#1}}
+
+% ㄪ (BOPOMOFO LETTER V): U+312A
+% 万 (wan): U+4E07
+\def\bopomofov{\textit{\symbol{"4E07}}}
+
+\hypersetup{
+  bookmarksnumbered=true,
+  pdftitle={汉语拼音方案}}
+
+\title{\huge\sffamily
+  \begin{CJKfilltwosides}{8em}
+    汉语拼音方案
+  \end{CJKfilltwosides}}
+\author{\normalsize\kaishu
+  （1958 年 2 月 11 日第一届全国人民代表大会第五次会议通过）}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section{字母表}
+
+\begin{center}
+  \begin{tabular}{*{8}{c}}
+    \textsf{字母：} & A a  & B b  & C c    & D d  & E e  & F f  & G g  \\
+    \textsf{名称：} & ㄚ   & ㄅㄝ & ㄘㄝ   & ㄉㄝ & ㄜ   & ㄝㄈ & ㄍㄝ \\
+    \cline{2-8}
+                    & H h  & I i  & J j    & K k  & L l  & M m  & N n  \\
+                    & ㄏㄚ & ㄧ   & ㄐㄧㄝ & ㄎㄝ & ㄝㄌ & ㄝㄇ & ㄋㄝ \\
+    \cline{2-8}
+                    & O o  & P p  & Q q    & R r  & S s  & T t  & \\
+                    & ㄛ   & ㄆㄝ & ㄑㄧㄡ & ㄚㄦ & ㄝㄙ & ㄊㄝ & \\
+    \cline{2-7}
+                    & U u  & V v  & W w    & X x  & Y y  & Z z  & \\
+                    & ㄨ   & \bopomofov ㄝ & ㄨㄚ   & ㄒㄧ & ㄧㄚ & ㄗㄝ &
+  \end{tabular}
+\end{center}
+
+V 只用来拼写外来语、少数民族语言和方言。
+
+字母的手写体依照拉丁字母的一般书写习惯。
+
+\section{声母表}
+
+\begin{center}
+  \begin{tabular}{*{9}{c}}
+    b    & p    & m    & f    &  & d    & t    & n    & l    \\
+    ㄅ玻 & ㄆ坡 & ㄇ摸 & ㄈ佛 &  & ㄉ得 & ㄊ特 & ㄋ讷 & ㄌ勒 \\
+    \hline
+    g    & k    & h    &      &  & j    & q    & x    &      \\
+    ㄍ哥 & ㄎ科 & ㄏ喝 &      &  & ㄐ基 & ㄑ欺 & ㄒ希 &      \\
+    \hline
+    zh   & ch   & sh   & r    &  & z    & c    & s    &      \\
+    ㄓ知 & ㄔ蚩 & ㄕ诗 & ㄖ日 &  & ㄗ资 & ㄘ雌 & ㄙ思 &
+  \end{tabular}
+\end{center}
+
+在给汉字注音的时候，为了使拼式简短，zh ch sh 可以省作 ẑ ĉ ŝ。
+
+\section{韵母表}
+
+\begin{center}
+  \begin{longtable}{Vp{4cm}|p{2.5cm}|p{2.5cm}|p{2.5cm}V}
+    \Xcline{1-4}{1pt}
+        & i    & u    & ü   \\                  & ㄧ   ~ 衣 & ㄨ   ~ 乌 & ㄩ   ~ 迂 \\ \hline
+    a   & ia   & ua   &     \\ ㄚ ~ 啊          & ㄧㄚ ~ 呀 & ㄨㄚ ~ 蛙 &           \\ \hline
+    o   &      & uo   &     \\ ㄛ ~ 喔          &           & ㄨㄛ ~ 窝 &           \\ \hline
+    e   & ie   &      & üe  \\ ㄜ ~ 鹅          & ㄧㄝ ~ 耶 &           & ㄩㄝ ~ 约 \\ \hline
+    ai  &      & uai  &     \\ ㄞ ~ 哀          &           & ㄨㄞ ~ 歪 &           \\ \hline
+    ei  &      & uei  &     \\ ㄟ ~ 欸          &           & ㄨㄟ ~ 威 &           \\ \hline
+    ao  & iao  &      &     \\ ㄠ ~ 熬          & ㄧㄠ ~ 腰 &           &           \\ \hline
+    ou  & iou  &      &     \\ ㄡ ~ 欧          & ㄧㄡ ~ 忧 &           &           \\ \hline
+    an  & ian  & uan  & üan \\ ㄢ ~ 安          & ㄧㄢ ~ 烟 & ㄨㄢ ~ 弯 & ㄩㄢ ~ 冤 \\ \hline
+    en  & in   & uen  & ün  \\ ㄣ ~ 恩          & ㄧㄣ ~ 因 & ㄨㄣ ~ 温 & ㄩㄣ ~ 晕 \\ \hline
+    ang & iang & uang &     \\ ㄤ ~ 昂          & ㄧㄤ ~ 央 & ㄨㄤ ~ 汪 &           \\ \hline
+    eng & ing  & ueng &     \\ ㄥ ~ 亨的韵母    & ㄧㄥ ~ 英 & ㄨㄥ ~ 翁 &           \\ \hline
+    ong & iong &      &     \\ （ㄨㄥ）轰的韵母 & ㄩㄥ ~ 雍 &           &           \\
+    \Xcline{1-4}{1pt}
+  \end{longtable}
+\end{center}
+
+\begin{enumerate}
+  \item “知、蚩、诗、日、资、雌、思”等七个音节的韵母用 i，即：知、蚩、诗、日、资、雌、思等字拼作
+        zhi，chi，shi，ri，zi，ci，si。
+
+  \item 韵母ㄦ写成 er，用作韵尾的时候写成 r。例如：“儿童”拼作 ertong，“花儿” 拼作 huar。
+
+  \item 韵母ㄝ单用的时候写成 ê。
+
+  \item i 行的韵母，前面没有声母的时候，写成 yi（衣），ya（呀），ye（耶），yao（腰），you（忧），
+        yan（烟），yin（因），yang（央），ying（英），yong（雍）。
+
+    u 行的韵母，前面没有声母的时候，写成 wu（乌），wa（蛙），wo（窝），wai（歪），wei（威），
+        wan（弯），wen（温），wang（汪），weng（翁）。
+
+    ü 行的韵母，前面没有声母的时候，写成 yu（迂），yue（约），yuan（冤），yun（晕）；ü 上两点省略。
+
+    ü 行的韵母跟声母 j，q，x 拼的时候，写成 ju（居），qu（区），xu（虚），ü 上两点也省略；但是跟
+        声母 n，l 拼的时候，仍然写成 nü（女），lü（吕）。
+
+  \item iou，uei，uen 前面加声母的时候，写成 iu，ui，un。例如 niu（牛），ɡui（归），lun（论）。
+
+  \item 给汉字注音的时候，为了使拼式简短，nɡ 可以省作 ŋ。
+\end{enumerate}
+
+\section{声调符号}
+
+\begin{center}
+  \begin{tabular}{*{4}{C{3em}}}
+    阴平 & 阳平 & 上声 & 去声 \\
+    ˉ    & ˊ    & ˇ    & ˋ
+  \end{tabular}
+\end{center}
+
+声调符号标在音节的主要母音上。轻声不标。例如：
+
+\begin{center}
+  \begin{tabular}{*{5}{C{4em}}}
+    妈 \pinyin{ma1} & 麻 \pinyin{ma2} & 马 \pinyin{ma3} & 骂 \pinyin{ma4} & 吗 \pinyin{ma} \\
+    （阴平）        & （阳平）        & （上声）        & （去声）        & （轻声）
+  \end{tabular}
+\end{center}
+
+\section{隔音符号}
+
+a，o，e 开头的音节连接在其它音节后面的时候，如果音节的界限发生混淆，用隔音符号（'）隔开，例如：
+\pinyin{pi'ao}（皮袄）。
+
+\end{document}

@@ -1,0 +1,287 @@
+\PassOptionsToPackage{log-declarations=false}{xparse}
+\documentclass{article}
+\usepackage{array,geometry,xeCJK,xeCJKfntef}
+\setmainfont{Roboto}
+\setCJKmainfont{Source Han Sans SC}
+% \setmainfont{Source Serif Pro}
+% \xeCJKDeclareSubCJKBlock{ElementExt}{`鿭,`𫟷,`鿬,`鿫}
+% \setCJKmainfont[ElementExt={[Path=./fonts/]{SourceHanSerif-Ext.otf}}]{Source Han Serif SC}
+% \geometry{a3paper,landscape,hmargin=2cm,vmargin=2cm}
+\geometry{papersize={48cm,27cm},hmargin=2cm,vmargin=2cm}
+\pagestyle{empty}
+
+\ExplSyntaxOn
+\prop_const_from_keyval:Nn \c_periodic_elements_prop
+  {
+    1   = { H  } { Hydrogen      } { 1.008           } { 氢 } { 氫 } { 氫 } { 水素               },
+    2   = { He } { Helium        } { 4.002602(2)     } { 氦 } { 氦 } { 氦 } { ヘリウム           },
+    3   = { Li } { Lithium       } { 6.94            } { 锂 } { 鋰 } { 鋰 } { リチウム           },
+    4   = { Be } { Beryllium     } { 9.0121831(5)    } { 铍 } { 鈹 } { 鈹 } { ベリリウム         },
+    5   = { B  } { Boron         } { 10.81           } { 硼 } { 硼 } { 硼 } { ホウ素             },
+    6   = { C  } { Carbon        } { 12.011          } { 碳 } { 碳 } { 碳 } { 炭素               },
+    7   = { N  } { Nitrogen      } { 14.007          } { 氮 } { 氮 } { 氮 } { 窒素               },
+    8   = { O  } { Oxygen        } { 15.999          } { 氧 } { 氧 } { 氧 } { 酸素               },
+    9   = { F  } { Fluorine      } { 18.998403163(6) } { 氟 } { 氟 } { 氟 } { フッ素             },
+    10  = { Ne } { Neon          } { 20.1797(6)      } { 氖 } { 氖 } { 氖 } { ネオン             },
+    11  = { Na } { Sodium        } { 22.98976928(2)  } { 钠 } { 鈉 } { 鈉 } { ナトリウム         },
+    12  = { Mg } { Magnesium     } { 24.305          } { 镁 } { 鎂 } { 鎂 } { マグネシウム       },
+    13  = { Al } { Aluminium     } { 26.9815384(3)   } { 铝 } { 鋁 } { 鋁 } { アルミニウム       },
+    14  = { Si } { Silicon       } { 28.085          } { 硅 } { 矽 } { 矽 } { ケイ素             },
+    15  = { P  } { Phosphorus    } { 30.973761998(5) } { 磷 } { 磷 } { 磷 } { リン               },
+    16  = { S  } { Sulfur        } { 32.06           } { 硫 } { 硫 } { 硫 } { 硫黄               },
+    17  = { Cl } { Chlorine      } { 35.45           } { 氯 } { 氯 } { 氯 } { 塩素               },
+    18  = { Ar } { Argon         } { 39.948          } { 氩 } { 氬 } { 氬 } { アルゴン           },
+    19  = { K  } { Potassium     } { 39.0983(1)      } { 钾 } { 鉀 } { 鉀 } { カリウム           },
+    20  = { Ca } { Calcium       } { 40.078(4)       } { 钙 } { 鈣 } { 鈣 } { カルシウム         },
+    21  = { Sc } { Scandium      } { 44.955908(5)    } { 钪 } { 鈧 } { 鈧 } { スカンジウム       },
+    22  = { Ti } { Titanium      } { 47.867(1)       } { 钛 } { 鈦 } { 鈦 } { チタン             },
+    23  = { V  } { Vanadium      } { 50.9415(1)      } { 钒 } { 釩 } { 釩 } { バナジウム         },
+    24  = { Cr } { Chromium      } { 51.9961(6)      } { 铬 } { 鉻 } { 鉻 } { クロム             },
+    25  = { Mn } { Manganese     } { 54.938043(2)    } { 锰 } { 錳 } { 錳 } { マンガン           },
+    26  = { Fe } { Iron          } { 55.845(2)       } { 铁 } { 鐵 } { 鐵 } { 鉄                 },
+    27  = { Co } { Cobalt        } { 58.933194(3)    } { 钴 } { 鈷 } { 鈷 } { コバルト           },
+    28  = { Ni } { Nickel        } { 58.6934(4)      } { 镍 } { 鎳 } { 鎳 } { ニッケル           },
+    29  = { Cu } { Copper        } { 63.546(3)       } { 铜 } { 銅 } { 銅 } { 銅                 },
+    30  = { Zn } { Zinc          } { 65.38(2)        } { 锌 } { 鋅 } { 鋅 } { 亜鉛               },
+    31  = { Ga } { Gallium       } { 69.723(1)       } { 镓 } { 鎵 } { 鎵 } { ガリウム           },
+    32  = { Ge } { Germanium     } { 72.630(8)       } { 锗 } { 鍺 } { 鍺 } { ゲルマニウム       },
+    33  = { As } { Arsenic       } { 74.921595(6)    } { 砷 } { 砷 } { 砷 } { ヒ素               },
+    34  = { Se } { Selenium      } { 78.971(8)       } { 硒 } { 硒 } { 硒 } { セレン             },
+    35  = { Br } { Bromine       } { 79.904          } { 溴 } { 溴 } { 溴 } { 臭素               },
+    36  = { Kr } { Krypton       } { 83.798(2)       } { 氪 } { 氪 } { 氪 } { クリプトン         },
+    37  = { Rb } { Rubidium      } { 85.4678(3)      } { 铷 } { 銣 } { 銣 } { ルビジウム         },
+    38  = { Sr } { Strontium     } { 87.62(1)        } { 锶 } { 鍶 } { 鍶 } { ストロンチウム     },
+    39  = { Y  } { Yttrium       } { 88.90584(1)     } { 钇 } { 釔 } { 釔 } { イットリウム       },
+    40  = { Zr } { Zirconium     } { 91.224(2)       } { 锆 } { 鋯 } { 鋯 } { ジルコニウム       },
+    41  = { Nb } { Niobium       } { 92.90637(1)     } { 铌 } { 鈮 } { 鈮 } { ニオブ             },
+    42  = { Mo } { Molybdenum    } { 95.95(1)        } { 钼 } { 鉬 } { 鉬 } { モリブデン         },
+    43  = { Tc } { Technetium    } { [98]            } { 锝 } { 鎝 } { 鍀 } { テクネチウム       },
+    44  = { Ru } { Ruthenium     } { 101.07(2)       } { 钌 } { 釕 } { 釕 } { ルテニウム         },
+    45  = { Rh } { Rhodium       } { 102.90549(2)    } { 铑 } { 銠 } { 銠 } { ロジウム           },
+    46  = { Pd } { Palladium     } { 106.42(1)       } { 钯 } { 鈀 } { 鈀 } { パラジウム         },
+    47  = { Ag } { Silver        } { 107.8682(2)     } { 银 } { 銀 } { 銀 } { 銀                 },
+    48  = { Cd } { Cadmium       } { 112.414(4)      } { 镉 } { 鎘 } { 鎘 } { カドミウム         },
+    49  = { In } { Indium        } { 114.818(1)      } { 铟 } { 銦 } { 銦 } { インジウム         },
+    50  = { Sn } { Tin           } { 118.710(7)      } { 锡 } { 錫 } { 錫 } { スズ               },
+    51  = { Sb } { Antimony      } { 121.760(1)      } { 锑 } { 銻 } { 銻 } { アンチモン         },
+    52  = { Te } { Tellurium     } { 127.60(3)       } { 碲 } { 碲 } { 碲 } { テルル             },
+    53  = { I  } { Iodine        } { 126.90447(3)    } { 碘 } { 碘 } { 碘 } { ヨウ素             },
+    54  = { Xe } { Xenon         } { 131.293(6)      } { 氙 } { 氙 } { 氙 } { キセノン           },
+    55  = { Cs } { Caesium       } { 132.90545196(6) } { 铯 } { 銫 } { 銫 } { セシウム           },
+    56  = { Ba } { Barium        } { 137.327(7)      } { 钡 } { 鋇 } { 鋇 } { バリウム           },
+    57  = { La } { Lanthanum     } { 138.90547(7)    } { 镧 } { 鑭 } { 鑭 } { ランタン           },
+    58  = { Ce } { Cerium        } { 140.116(1)      } { 铈 } { 鈰 } { 鈰 } { セリウム           },
+    59  = { Pr } { Praseodymium  } { 140.90766(1)    } { 镨 } { 鐠 } { 鐠 } { プラセオジム       },
+    60  = { Nd } { Neodymium     } { 144.242(3)      } { 钕 } { 釹 } { 釹 } { ネオジム           },
+    61  = { Pm } { Promethium    } { [145]           } { 钷 } { 鉕 } { 鉕 } { プロメチウム       },
+    62  = { Sm } { Samarium      } { 150.36(2)       } { 钐 } { 釤 } { 釤 } { サマリウム         },
+    63  = { Eu } { Europium      } { 151.964(1)      } { 铕 } { 銪 } { 銪 } { ユウロピウム       },
+    64  = { Gd } { Gadolinium    } { 157.25(3)       } { 钆 } { 釓 } { 釓 } { ガドリニウム       },
+    65  = { Tb } { Terbium       } { 158.925354(8)   } { 铽 } { 鋱 } { 鋱 } { テルビウム         },
+    66  = { Dy } { Dysprosium    } { 162.500(1)      } { 镝 } { 鏑 } { 鏑 } { ジスプロシウム     },
+    67  = { Ho } { Holmium       } { 164.930328(7)   } { 钬 } { 鈥 } { 鈥 } { ホルミウム         },
+    68  = { Er } { Erbium        } { 167.259(3)      } { 铒 } { 鉺 } { 鉺 } { エルビウム         },
+    69  = { Tm } { Thulium       } { 168.934218(6)   } { 铥 } { 銩 } { 銩 } { ツリウム           },
+    70  = { Yb } { Ytterbium     } { 173.045(10)     } { 镱 } { 鐿 } { 鐿 } { イッテルビウム     },
+    71  = { Lu } { Lutetium      } { 174.9668(1)     } { 镥 } { 鎦 } { 鑥 } { ルテチウム         },
+    72  = { Hf } { Hafnium       } { 178.49(2)       } { 铪 } { 鉿 } { 鉿 } { ハフニウム         },
+    73  = { Ta } { Tantalum      } { 180.94788(2)    } { 钽 } { 鉭 } { 鉭 } { タンタル           },
+    74  = { W  } { Tungsten      } { 183.84(1)       } { 钨 } { 鎢 } { 鎢 } { タングステン       },
+    75  = { Re } { Rhenium       } { 186.207(1)      } { 铼 } { 錸 } { 錸 } { レニウム           },
+    76  = { Os } { Osmium        } { 190.23(3)       } { 锇 } { 鋨 } { 鋨 } { オスミウム         },
+    77  = { Ir } { Iridium       } { 192.217(2)      } { 铱 } { 銥 } { 銥 } { イリジウム         },
+    78  = { Pt } { Platinum      } { 195.084(9)      } { 铂 } { 鉑 } { 鉑 } { 白金               },
+    79  = { Au } { Gold          } { 196.966570(4)   } { 金 } { 金 } { 金 } { 金                 },
+    80  = { Hg } { Mercury       } { 200.592(3)      } { 汞 } { 汞 } { 汞 } { 水銀               },
+    81  = { Tl } { Thallium      } { 204.38          } { 铊 } { 鉈 } { 鉈 } { タリウム           },
+    82  = { Pb } { Lead          } { 207.2(1)        } { 铅 } { 鉛 } { 鉛 } { 鉛                 },
+    83  = { Bi } { Bismuth       } { 208.98040(1)    } { 铋 } { 鉍 } { 鉍 } { ビスマス           },
+    84  = { Po } { Polonium      } { [209]           } { 钋 } { 釙 } { 釙 } { ポロニウム         },
+    85  = { At } { Astatine      } { [210]           } { 砹 } { 砈 } { 砈 } { アスタチン         },
+    86  = { Rn } { Radon         } { [222]           } { 氡 } { 氡 } { 氡 } { ラドン             },
+    87  = { Fr } { Francium      } { [223]           } { 钫 } { 鍅 } { 鈁 } { フランシウム       },
+    88  = { Ra } { Radium        } { [226]           } { 镭 } { 鐳 } { 鐳 } { ラジウム           },
+    89  = { Ac } { Actinium      } { [227]           } { 锕 } { 錒 } { 錒 } { アクチニウム       },
+    90  = { Th } { Thorium       } { 232.0377(4)     } { 钍 } { 釷 } { 釷 } { トリウム           },
+    91  = { Pa } { Protactinium  } { 231.03588(1)    } { 镤 } { 鏷 } { 鏷 } { プロトアクチニウム },
+    92  = { U  } { Uranium       } { 238.02891(3)    } { 铀 } { 鈾 } { 鈾 } { ウラン             },
+    93  = { Np } { Neptunium     } { [237]           } { 镎 } { 錼 } { 鎿 } { ネプツニウム       },
+    94  = { Pu } { Plutonium     } { [244]           } { 钚 } { 鈽 } { 鈈 } { プルトニウム       },
+    95  = { Am } { Americium     } { [243]           } { 镅 } { 鋂 } { 鎇 } { アメリシウム       },
+    96  = { Cm } { Curium        } { [247]           } { 锔 } { 鋦 } { 鋦 } { キュリウム         },
+    97  = { Bk } { Berkelium     } { [247]           } { 锫 } { 鉳 } { 錇 } { バークリウム       },
+    98  = { Cf } { Californium   } { [251]           } { 锎 } { 鉲 } { 鐦 } { カリホルニウム     },
+    99  = { Es } { Einsteinium   } { [252]           } { 锿 } { 鑀 } { 鎄 } { アインスタイニウム },
+    100 = { Fm } { Fermium       } { [257]           } { 镄 } { 鐨 } { 鐨 } { フェルミウム       },
+    101 = { Md } { Mendelevium   } { [258]           } { 钔 } { 鍆 } { 鍆 } { メンデレビウム     },
+    102 = { No } { Nobelium      } { [259]           } { 锘 } { 鍩 } { 鍩 } { ノーベリウム       },
+    103 = { Lr } { Lawrencium    } { [266]           } { 铹 } { 鐒 } { 鐒 } { ローレンシウム     },
+    104 = { Rf } { Rutherfordium } { [267]           } { 𬬻 } { 鑪 } { 鑪 } { ラザホージウム     },
+    105 = { Db } { Dubnium       } { [268]           } { 𬭊 } { 𨧀 } { 𨧀 } { ドブニウム         },
+    106 = { Sg } { Seaborgium    } { [269]           } { 𬭳 } { 𨭎 } { 𨭎 } { シーボーギウム     },
+    107 = { Bh } { Bohrium       } { [270]           } { 𬭛 } { 𨨏 } { 𨨏 } { ボーリウム         },
+    108 = { Hs } { Hassium       } { [270]           } { 𬭶 } { 𨭆 } { 𨭆 } { ハッシウム         },
+    109 = { Mt } { Meitnerium    } { [278]           } { 鿏 } { 䥑 } { 䥑 } { マイトネリウム     },
+    110 = { Ds } { Darmstadtium  } { [281]           } { 𫟼 } { 鐽 } { 鐽 } { ダームスタチウム   },
+    111 = { Rg } { Roentgenium   } { [282]           } { 𬬭 } { 錀 } { 錀 } { レントゲニウム     },
+    112 = { Cn } { Copernicium   } { [285]           } { 鿔 } { 鎶 } { 鎶 } { コペルニシウム     },
+    113 = { Nh } { Nihonium      } { [286]           } { 鿭 } { 鉨 } { 鉨 } { ニホニウム         }, % ⿰钅尔 U+9FED
+    114 = { Fl } { Flerovium     } { [289]           } { 𫓧 } { 鈇 } { 鈇 } { フレロビウム       },
+    115 = { Mc } { Moscovium     } { [290]           } { 镆 } { 鏌 } { 鏌 } { モスコビウム       },
+    116 = { Lv } { Livermorium   } { [293]           } { 𫟷 } { 鉝 } { 鉝 } { リバモリウム       }, % ⿰钅立 U+2B7F7
+    117 = { Ts } { Tennessine    } { [294]           } { 鿬 } { 鿬 } { 鿬 } { テネシン           }, % ⿰石田 U+9FEC
+    118 = { Og } { Oganesson     } { [294]           } { 鿫 } { 鿫 } { 鿫 } { オガネソン         }, % ⿹气奥 U+9FEB
+  }
+\prop_const_from_keyval:Nn \c_periodic_La_Ac_prop
+  {
+    La = { 57 --  71 } { Lanthanoids } { 镧系 } { 鑭系 } { 鑭系 },
+    Ac = { 89 -- 103 } { Actinoids   } { 锕系 } { 錒系 } { 錒系 },
+  }
+\prop_const_from_keyval:Nn \c_periodic_title_prop
+  {
+    zh-cn = { 元素周期表 },
+    zh-tw = { 元素週期表 },
+    zh-hk = { 元素週期表 },
+  }
+\tl_const:Nn \c_periodic_title_tl
+  { Periodic~ Table~ of~ the~ Elements }
+\tl_const:Nn \c__periodic_vphantom_letters_tl
+  {
+    ABCDEFGHIJKLMNOPQRSTUVWXYZ
+    abcdefghijklmnopqrstuvwxyz
+    0123456789
+  }
+\cs_new_protected:Npn \__periodic_vphantom:
+  { \vphantom { \c__periodic_vphantom_letters_tl } }
+\cs_new_protected:Npn \__periodic_cell:nnnn #1#2#3#4
+  {
+    \parbox [c] [2.2cm] [c] {1.65cm}
+      {
+        \centering
+        {#1} \\[ 0.05cm]
+        {#2} \\[-0.08cm]
+        {#3} \\[-0.05cm]
+        {#4}
+      }
+    \tex_space:D
+  }
+\cs_new_protected:Npn \periodic_print_element:nnnnnnnn #1#2#3#4#5#6#7#8
+  {
+    % #1: element index
+    % #2: symbol
+    % #3: full name
+    % #4: atomic weight
+    % #5, #6, #7, #8: name (zh-cn, zh-tw, zh-hk, jp)
+    \__periodic_cell:nnnn
+      { \hspace{-0.06cm} #1 \hfill #2 \hspace{-0.06cm} \__periodic_vphantom: }
+      { \Huge #5 }
+      { \scriptsize #3 \__periodic_vphantom: }
+      { \tiny #4 \vphantom {[()]} }
+  }
+\cs_new_protected:Npn \periodic_element:n #1
+  {
+    \prop_get:NnN \c_periodic_elements_prop {#1} \l_tmpa_tl
+    \use:x { \periodic_print_element:nnnnnnnn {#1} \l_tmpa_tl }
+  }
+\cs_new_protected:Npn \__periodic_table_aux:nn #1#2
+  {
+    \int_step_inline:nnn {#1} {#2-1}
+      { \periodic_element:n {##1} & }
+    \periodic_element:n {#2}
+  }
+\cs_new_protected:Npn \__periodic_table_aux:n #1
+  {
+    \periodic_element:n {#1} &
+    \exp_args:Nx \periodic_element:n { \int_eval:n {#1+1} }
+  }
+\cs_new_protected:Npn \__periodic_La_Ac_aux:nnnnn #1#2#3#4#5
+  {
+    % #1: element index
+    % #2: full name
+    % #3, #4, #5: name (zh-cn, zh-tw, zh-hk)
+    \__periodic_cell:nnnn
+      { #1 \__periodic_vphantom: }
+      {
+        \vspace {-0.1cm}
+        \LARGE \makebox [2.1em] [s] {#3} \vphantom { \Huge #3 }
+        \vspace {0.1cm}
+      }
+      { \scriptsize #2 \__periodic_vphantom: }
+      { \tiny \vphantom {[()]} }
+  }
+\cs_new_protected:Npn \__periodic_La_Ac:n #1
+  {
+    \prop_get:NnN \c_periodic_La_Ac_prop {#1} \l_tmpa_tl
+    \use:x { \__periodic_La_Ac_aux:nnnnn \l_tmpa_tl }
+  }
+% The following several functions should be expandable.
+\cs_new:Npn \__periodic_multicol:n #1
+  { \multicolumn {#1} {c|} { } }
+\cs_new:Npn \__periodic_table_s:
+  {
+    \cline {1-1} \cline {18-18}
+    \periodic_element:n {1} & \__periodic_multicol:n {16} & \periodic_element:n {2} \\
+  }
+\cs_new:Npn \__periodic_table_p:
+  {
+    \cline {1-2} \cline {13-18}
+    \__periodic_table_aux:n { 3} & \__periodic_multicol:n {10} & \__periodic_table_aux:nn { 5} {10} \\
+    \cline {1-2} \cline {13-18}
+    \__periodic_table_aux:n {11} & \__periodic_multicol:n {10} & \__periodic_table_aux:nn {13} {18} \\
+  }
+\cs_new:Npn \__periodic_table_d:
+  {
+    \hline \__periodic_table_aux:nn {19} {36} \\
+    \hline \__periodic_table_aux:nn {37} {54} \\
+  }
+\cs_new:Npn \__periodic_table_f:
+  {
+    \hline \__periodic_table_aux:n {55} & \__periodic_La_Ac:n { La } & \__periodic_table_aux:nn { 72} { 86} \\
+    \hline \__periodic_table_aux:n {87} & \__periodic_La_Ac:n { Ac } & \__periodic_table_aux:nn {104} {118} \\
+    \hline
+  }
+\cs_new_protected:Npn \periodic_table_main:
+  {
+    \begin{tabular} {*{18}{|c}|}
+      \__periodic_table_s:
+      \__periodic_table_p:
+      \__periodic_table_d:
+      \__periodic_table_f:
+    \end{tabular}
+  }
+\cs_new_protected:Npn \periodic_table_sub:
+  {
+    \begin{tabular} {*{15}{|c}|}
+      \hline \__periodic_table_aux:nn { 57} { 71} \\
+      \hline \__periodic_table_aux:nn { 89} {103} \\
+      \hline
+    \end{tabular}
+  }
+\NewDocumentCommand \printelements { }
+  {
+    \seq_map_inline:Nn \c_periodic_elements_prop
+      { \periodic_print_element:nnnnnnnn ##1 }
+  }
+\NewDocumentCommand \periodictable { }
+  {
+    \centering
+    \periodic_table_main: \\[1cm]
+    \periodic_table_sub:
+  }
+\NewDocumentCommand \periodictabletitle { }
+  {
+    \prop_get:NnN \c_periodic_title_prop { zh-cn } \l_tmpa_tl
+    \begin{center}
+      \Huge \bfseries
+      \begin{CJKfilltwosides}{9em}
+        \tl_use:N \l_tmpa_tl
+      \end{CJKfilltwosides} \\[0.3cm]
+      \Large \tl_use:N \c_periodic_title_tl
+    \end{center}
+  }
+\ExplSyntaxOff
+
+\begin{document}
+  \periodictabletitle
+  \periodictable
+\end{document}
