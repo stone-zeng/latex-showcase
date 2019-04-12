@@ -1,0 +1,17 @@
+% lualatex nengo.tex
+
+\documentclass{standalone}
+\usepackage{luatexja,luatexja-fontspec,luatexja-ruby}
+\setmainjfont{Source Han Sans}  % after 2.001
+\ltjsetruby{size=0.35, fontcmd=\jfontspec{Source Han Sans Medium}}
+
+\begin{document}
+\centering
+\begin{tabular}{ccl}
+  \ltjruby{令|和}{れい|わ}     & ^^^^32ff & 于時、初春\textbf{令}月、氣淑風\textbf{和} \\
+  \ltjruby{平|成}{へい|せい}   & ^^^^337b & 内\textbf{平}外\textbf{成} \\
+  \ltjruby{昭|和}{しょう|わ}   & ^^^^337c & 百姓\textbf{昭}明、協\textbf{和}萬邦 \\
+  \ltjruby{大|正}{たい|しょう} & ^^^^337d & \textbf{大}亨以\textbf{正}、天之道也 \\
+  \ltjruby{明|治}{めい|じ}     & ^^^^337e & 聖人南面而聴天下、嚮\textbf{明}而\textbf{治} \\
+\end{tabular}
+\end{document}
