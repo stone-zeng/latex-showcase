@@ -51,7 +51,7 @@
 % #1 = name, #2 = begin, #3 = end, #4 = font list
 \cs_new_protected:Npn \BLOCK #1#2#3#4
   {
-    \section {#1}
+    \section { #1 ~ ( U+\@@_encoding:n {#2} -- U+\@@_encoding:n {#3}) }
     \@@_set_symbol:n {#1}
     \@@_set_font:n {#4}
     \@@_multiple_table:nn {#2} {#3}
@@ -194,8 +194,8 @@
       }
     \bool_new:c { l_@@_#1_bool }
   }
-\@@_symbol_specials_aux:nn { control  } { green }
-\@@_symbol_specials_aux:nn { reserved } { red   }
+\@@_symbol_specials_aux:nn { control  } { green      }
+\@@_symbol_specials_aux:nn { reserved } { lightgray  }
 
 \cs_new:Npn \@@_encoding:n #1
   {
@@ -246,31 +246,31 @@
 \BLOCK {Cyrillic Supplement}                            {  "0500} {  "052F} {freeserif,noto}
 \BLOCK {Armenian}                                       {  "0530} {  "058F} {noto-armenian,unifont}
 \BLOCK {Hebrew}                                         {  "0590} {  "05FF} {freeserif,unifont}
-\BLOCK {Arabic}                                         {  "0600} {  "06FF} {noto-arabic,unifont}
+\BLOCK {Arabic}                                         {  "0600} {  "06FF} {freeserif,noto-arabic,unifont}
 \BLOCK {Syriac}                                         {  "0700} {  "074F} {noto-syriac}
-\BLOCK {Arabic Supplement}                              {  "0750} {  "077F} {noto-arabic}
-% \BLOCK {Thaana}                                         {  "0780} {  "07BF} {}
-% \BLOCK {NKo}                                            {  "07C0} {  "07FF} {}
-% \BLOCK {Samaritan}                                      {  "0800} {  "083F} {}
-% \BLOCK {Mandaic}                                        {  "0840} {  "085F} {}
-% \BLOCK {Syriac Supplement}                              {  "0860} {  "086F} {}
-% \BLOCK {Arabic Extended-A}                              {  "08A0} {  "08FF} {}
-% \BLOCK {Devanagari}                                     {  "0900} {  "097F} {}
-% \BLOCK {Bengali}                                        {  "0980} {  "09FF} {}
-% \BLOCK {Gurmukhi}                                       {  "0A00} {  "0A7F} {}
-% \BLOCK {Gujarati}                                       {  "0A80} {  "0AFF} {}
-% \BLOCK {Oriya}                                          {  "0B00} {  "0B7F} {}
-% \BLOCK {Tamil}                                          {  "0B80} {  "0BFF} {}
-% \BLOCK {Telugu}                                         {  "0C00} {  "0C7F} {}
-% \BLOCK {Kannada}                                        {  "0C80} {  "0CFF} {}
-% \BLOCK {Malayalam}                                      {  "0D00} {  "0D7F} {}
-% \BLOCK {Sinhala}                                        {  "0D80} {  "0DFF} {}
-% \BLOCK {Thai}                                           {  "0E00} {  "0E7F} {}
-% \BLOCK {Lao}                                            {  "0E80} {  "0EFF} {}
-% \BLOCK {Tibetan}                                        {  "0F00} {  "0FFF} {}
-% \BLOCK {Myanmar}                                        {  "1000} {  "109F} {}
-% \BLOCK {Georgian}                                       {  "10A0} {  "10FF} {}
-% \BLOCK {Hangul Jamo}                                    {  "1100} {  "11FF} {shserif}
+\BLOCK {Arabic Supplement}                              {  "0750} {  "077F} {freeserif}
+\BLOCK {Thaana}                                         {  "0780} {  "07BF} {freeserif}
+\BLOCK {NKo}                                            {  "07C0} {  "07FF} {noto-nko,unifont}
+\BLOCK {Samaritan}                                      {  "0800} {  "083F} {noto-samaritan}
+\BLOCK {Mandaic}                                        {  "0840} {  "085F} {noto-mandaic}
+\BLOCK {Syriac Supplement}                              {  "0860} {  "086F} {unifont}
+\BLOCK {Arabic Extended-A}                              {  "08A0} {  "08FF} {noto-arabic,unifont}
+\BLOCK {Devanagari}                                     {  "0900} {  "097F} {noto-devanagari}
+\BLOCK {Bengali}                                        {  "0980} {  "09FF} {noto-bengali,unifont}
+\BLOCK {Gurmukhi}                                       {  "0A00} {  "0A7F} {freeserif,unifont}
+\BLOCK {Gujarati}                                       {  "0A80} {  "0AFF} {freeserif,unifont}
+\BLOCK {Oriya}                                          {  "0B00} {  "0B7F} {freeserif}
+\BLOCK {Tamil}                                          {  "0B80} {  "0BFF} {freeserif}
+\BLOCK {Telugu}                                         {  "0C00} {  "0C7F} {noto-telugu,unifont}
+\BLOCK {Kannada}                                        {  "0C80} {  "0CFF} {noto-kannada,unifont}
+\BLOCK {Malayalam}                                      {  "0D00} {  "0D7F} {freeserif,noto-malayalam,unifont}
+\BLOCK {Sinhala}                                        {  "0D80} {  "0DFF} {freeserif,noto-sinhala}
+\BLOCK {Thai}                                           {  "0E00} {  "0E7F} {freeserif}
+\BLOCK {Lao}                                            {  "0E80} {  "0EFF} {noto-lao,unifont}
+\BLOCK {Tibetan}                                        {  "0F00} {  "0FFF} {noto-tibetan}
+\BLOCK {Myanmar}                                        {  "1000} {  "109F} {freeserif,noto-myanmar}
+\BLOCK {Georgian}                                       {  "10A0} {  "10FF} {freeserif,noto-georgian}
+\BLOCK {Hangul Jamo}                                    {  "1100} {  "11FF} {shserif}
 % \BLOCK {Ethiopic}                                       {  "1200} {  "137F} {}
 % \BLOCK {Ethiopic Supplement}                            {  "1380} {  "139F} {}
 % \BLOCK {Cherokee}                                       {  "13A0} {  "13FF} {}
@@ -311,24 +311,24 @@
 % \BLOCK {Combining Diacritical Marks for Symbols}        {  "20D0} {  "20FF} {}
 % \BLOCK {Letterlike Symbols}                             {  "2100} {  "214F} {}
 % \BLOCK {Number Forms}                                   {  "2150} {  "218F} {}
-% \BLOCK {Arrows}                                         {  "2190} {  "21FF} {}
-% \BLOCK {Mathematical Operators}                         {  "2200} {  "22FF} {}
-% \BLOCK {Miscellaneous Technical}                        {  "2300} {  "23FF} {}
-% \BLOCK {Control Pictures}                               {  "2400} {  "243F} {}
-% \BLOCK {Optical Character Recognition}                  {  "2440} {  "245F} {}
-% \BLOCK {Enclosed Alphanumerics}                         {  "2460} {  "24FF} {}
-% \BLOCK {Box Drawing}                                    {  "2500} {  "257F} {}
-% \BLOCK {Block Elements}                                 {  "2580} {  "259F} {}
-% \BLOCK {Geometric Shapes}                               {  "25A0} {  "25FF} {}
-% \BLOCK {Miscellaneous Symbols}                          {  "2600} {  "26FF} {}
-% \BLOCK {Dingbats}                                       {  "2700} {  "27BF} {}
-% \BLOCK {Miscellaneous Mathematical Symbols-A}           {  "27C0} {  "27EF} {}
-% \BLOCK {Supplemental Arrows-A}                          {  "27F0} {  "27FF} {}
-% \BLOCK {Braille Patterns}                               {  "2800} {  "28FF} {}
-% \BLOCK {Supplemental Arrows-B}                          {  "2900} {  "297F} {}
-% \BLOCK {Miscellaneous Mathematical Symbols-B}           {  "2980} {  "29FF} {}
-% \BLOCK {Supplemental Mathematical Operators}            {  "2A00} {  "2AFF} {}
-% \BLOCK {Miscellaneous Symbols and Arrows}               {  "2B00} {  "2BFF} {}
+\BLOCK {Arrows}                                         {  "2190} {  "21FF} {xits,noto-symbols2,unifont}
+\BLOCK {Mathematical Operators}                         {  "2200} {  "22FF} {xits}
+\BLOCK {Miscellaneous Technical}                        {  "2300} {  "23FF} {xits,noto-symbols,noto-symbols2,noto-emoji,unifont}
+\BLOCK {Control Pictures}                               {  "2400} {  "243F} {noto-symbols2}
+\BLOCK {Optical Character Recognition}                  {  "2440} {  "245F} {noto-symbols2}
+\BLOCK {Enclosed Alphanumerics}                         {  "2460} {  "24FF} {shserif}
+\BLOCK {Box Drawing}                                    {  "2500} {  "257F} {xits,unifont}
+\BLOCK {Block Elements}                                 {  "2580} {  "259F} {xits,unifont}
+\BLOCK {Geometric Shapes}                               {  "25A0} {  "25FF} {xits}
+\BLOCK {Miscellaneous Symbols}                          {  "2600} {  "26FF} {xits,noto-symbols,noto-symbols2}
+\BLOCK {Dingbats}                                       {  "2700} {  "27BF} {noto-symbols,noto-symbols2,noto-emoji}
+\BLOCK {Miscellaneous Mathematical Symbols-A}           {  "27C0} {  "27EF} {xits,unifont}
+\BLOCK {Supplemental Arrows-A}                          {  "27F0} {  "27FF} {xits}
+\BLOCK {Braille Patterns}                               {  "2800} {  "28FF} {noto-symbols2}
+\BLOCK {Supplemental Arrows-B}                          {  "2900} {  "297F} {xits}
+\BLOCK {Miscellaneous Mathematical Symbols-B}           {  "2980} {  "29FF} {xits}
+\BLOCK {Supplemental Mathematical Operators}            {  "2A00} {  "2AFF} {xits}
+\BLOCK {Miscellaneous Symbols and Arrows}               {  "2B00} {  "2BFF} {xits,noto-symbols2,unifont}
 % \BLOCK {Glagolitic}                                     {  "2C00} {  "2C5F} {}
 % \BLOCK {Latin Extended-C}                               {  "2C60} {  "2C7F} {}
 % \BLOCK {Coptic}                                         {  "2C80} {  "2CFF} {}
@@ -337,23 +337,23 @@
 % \BLOCK {Ethiopic Extended}                              {  "2D80} {  "2DDF} {}
 % \BLOCK {Cyrillic Extended-A}                            {  "2DE0} {  "2DFF} {}
 % \BLOCK {Supplemental Punctuation}                       {  "2E00} {  "2E7F} {}
-% \BLOCK {CJK Radicals Supplement}                        {  "2E80} {  "2EFF} {shserif, shsans}
-% \BLOCK {Kangxi Radicals}                                {  "2F00} {  "2FDF} {shserif, shsans}
-% \BLOCK {Ideographic Description Characters}             {  "2FF0} {  "2FFF} {shserif, shsans}
-% \BLOCK {CJK Symbols and Punctuation}                    {  "3000} {  "303F} {shserif, shsans}
-% \BLOCK {Hiragana}                                       {  "3040} {  "309F} {shserif, shsans}
-% \BLOCK {Katakana}                                       {  "30A0} {  "30FF} {shserif, shsans}
-% \BLOCK {Bopomofo}                                       {  "3100} {  "312F} {shserif, shsans}
-% \BLOCK {Hangul Compatibility Jamo}                      {  "3130} {  "318F} {shserif}
-% \BLOCK {Kanbun}                                         {  "3190} {  "319F} {shserif, shsans}
-% \BLOCK {Bopomofo Extended}                              {  "31A0} {  "31BF} {shserif, shsans}
-% \BLOCK {CJK Strokes}                                    {  "31C0} {  "31EF} {shserifshserif,shsans}
-% \BLOCK {Katakana Phonetic Extensions}                   {  "31F0} {  "31FF} {shserif, shsans}
-% \BLOCK {Enclosed CJK Letters and Months}                {  "3200} {  "32FF} {shserif, shsans}
-% \BLOCK {CJK Compatibility}                              {  "3300} {  "33FF} {shserif}
-% \BLOCK {CJK Unified Ideographs Extension A}             {  "3400} {  "4DBF} {shserif}
+\BLOCK {CJK Radicals Supplement}                        {  "2E80} {  "2EFF} {shserif,shsans}
+\BLOCK {Kangxi Radicals}                                {  "2F00} {  "2FDF} {shserif,shsans}
+\BLOCK {Ideographic Description Characters}             {  "2FF0} {  "2FFF} {shserif,shsans}
+\BLOCK {CJK Symbols and Punctuation}                    {  "3000} {  "303F} {shserif,shsans}
+\BLOCK {Hiragana}                                       {  "3040} {  "309F} {shserif,shsans}
+\BLOCK {Katakana}                                       {  "30A0} {  "30FF} {shserif,shsans}
+\BLOCK {Bopomofo}                                       {  "3100} {  "312F} {shserif,shsans}
+\BLOCK {Hangul Compatibility Jamo}                      {  "3130} {  "318F} {shserif}
+\BLOCK {Kanbun}                                         {  "3190} {  "319F} {shserif,shsans}
+\BLOCK {Bopomofo Extended}                              {  "31A0} {  "31BF} {shserif,shsans}
+\BLOCK {CJK Strokes}                                    {  "31C0} {  "31EF} {shserifshserif,shsans}
+\BLOCK {Katakana Phonetic Extensions}                   {  "31F0} {  "31FF} {shserif,shsans}
+\BLOCK {Enclosed CJK Letters and Months}                {  "3200} {  "32FF} {shserif,shsans}
+\BLOCK {CJK Compatibility}                              {  "3300} {  "33FF} {shserif,hanamina}
+\BLOCK {CJK Unified Ideographs Extension A}             {  "3400} {  "4DBF} {shserif}
 % \BLOCK {Yijing Hexagram Symbols}                        {  "4DC0} {  "4DFF} {shserif}
-% \BLOCK {CJK Unified Ideographs}                         {  "4E00} {  "9FFF} {shserif,shsans}
+\BLOCK {CJK Unified Ideographs}                         {  "4E00} {  "9FFF} {shserif,shsans}
 % \BLOCK {Yi Syllables}                                   {  "A000} {  "A48F} {}
 % \BLOCK {Yi Radicals}                                    {  "A490} {  "A4CF} {}
 % \BLOCK {Lisu}                                           {  "A4D0} {  "A4FF} {}
@@ -369,7 +369,7 @@
 % \BLOCK {Devanagari Extended}                            {  "A8E0} {  "A8FF} {}
 % \BLOCK {Kayah Li}                                       {  "A900} {  "A92F} {}
 % \BLOCK {Rejang}                                         {  "A930} {  "A95F} {}
-% \BLOCK {Hangul Jamo Extended-A}                         {  "A960} {  "A97F} {shserif}
+\BLOCK {Hangul Jamo Extended-A}                         {  "A960} {  "A97F} {shserif}
 % \BLOCK {Javanese}                                       {  "A980} {  "A9DF} {}
 % \BLOCK {Myanmar Extended-B}                             {  "A9E0} {  "A9FF} {}
 % \BLOCK {Cham}                                           {  "AA00} {  "AA5F} {}
@@ -380,25 +380,25 @@
 % \BLOCK {Latin Extended-E}                               {  "AB30} {  "AB6F} {}
 % \BLOCK {Cherokee Supplement}                            {  "AB70} {  "ABBF} {}
 % \BLOCK {Meetei Mayek}                                   {  "ABC0} {  "ABFF} {}
-% \BLOCK {Hangul Syllables}                               {  "AC00} {  "D7AF} {shserif}
-% \BLOCK {Hangul Jamo Extended-B}                         {  "D7B0} {  "D7FF} {shserif}
+\BLOCK {Hangul Syllables}                               {  "AC00} {  "D7AF} {shserif}
+\BLOCK {Hangul Jamo Extended-B}                         {  "D7B0} {  "D7FF} {shserif}
 % \BLOCK {High Surrogates}                                {  "D800} {  "DB7F} {}
 % \BLOCK {High Private Use Surrogates}                    {  "DB80} {  "DBFF} {}
 % \BLOCK {Low Surrogates}                                 {  "DC00} {  "DFFF} {}
 % \BLOCK {Private Use Area}                               {  "E000} {  "F8FF} {}
-% \BLOCK {CJK Compatibility Ideographs}                   {  "F900} {  "FAFF} {shserif,hanamina,hanaminb}
+\BLOCK {CJK Compatibility Ideographs}                   {  "F900} {  "FAFF} {shserif,hanamina,hanaminb}
 % \BLOCK {Alphabetic Presentation Forms}                  {  "FB00} {  "FB4F} {}
 % \BLOCK {Arabic Presentation Forms-A}                    {  "FB50} {  "FDFF} {}
 % \BLOCK {Variation Selectors}                            {  "FE00} {  "FE0F} {}
 % \BLOCK {Vertical Forms}                                 {  "FE10} {  "FE1F} {}
 % \BLOCK {Combining Half Marks}                           {  "FE20} {  "FE2F} {}
-% \BLOCK {CJK Compatibility Forms}                        {  "FE30} {  "FE4F} {shserif}
+\BLOCK {CJK Compatibility Forms}                        {  "FE30} {  "FE4F} {shserif}
 % \BLOCK {Small Form Variants}                            {  "FE50} {  "FE6F} {}
 % \BLOCK {Arabic Presentation Forms-B}                    {  "FE70} {  "FEFF} {}
 % \BLOCK {Halfwidth and Fullwidth Forms}                  {  "FF00} {  "FFEF} {}
 % \BLOCK {Specials}                                       {  "FFF0} {  "FFFF} {}
-% \BLOCK {Linear B Syllabary}                             { "10000} { "1007F} {}
-% \BLOCK {Linear B Ideograms}                             { "10080} { "100FF} {}
+\BLOCK {Linear B Syllabary}                             { "10000} { "1007F} {noto-linearb}
+\BLOCK {Linear B Ideograms}                             { "10080} { "100FF} {noto-linearb}
 % \BLOCK {Aegean Numbers}                                 { "10100} { "1013F} {}
 % \BLOCK {Ancient Greek Numbers}                          { "10140} { "1018F} {}
 % \BLOCK {Ancient Symbols}                                { "10190} { "101CF} {}
@@ -475,7 +475,7 @@
 % \BLOCK {Cuneiform}                                      { "12000} { "123FF} {}
 % \BLOCK {Cuneiform Numbers and Punctuation}              { "12400} { "1247F} {}
 % \BLOCK {Early Dynastic Cuneiform}                       { "12480} { "1254F} {}
-% \BLOCK {Egyptian Hieroglyphs}                           { "13000} { "1342F} {}
+\BLOCK {Egyptian Hieroglyphs}                           { "13000} { "1342F} {noto-egyptian}
 % \BLOCK {Egyptian Hieroglyph Format Controls}            { "13430} { "1343F} {}
 % \BLOCK {Anatolian Hieroglyphs}                          { "14400} { "1467F} {}
 % \BLOCK {Bamum Supplement}                               { "16800} { "16A3F} {}
@@ -499,7 +499,7 @@
 % \BLOCK {Mayan Numerals}                                 { "1D2E0} { "1D2FF} {}
 % \BLOCK {Tai Xuan Jing Symbols}                          { "1D300} { "1D35F} {}
 % \BLOCK {Counting Rod Numerals}                          { "1D360} { "1D37F} {}
-% \BLOCK {Mathematical Alphanumeric Symbols}              { "1D400} { "1D7FF} {xits}
+\BLOCK {Mathematical Alphanumeric Symbols}              { "1D400} { "1D7FF} {xits}
 % \BLOCK {Sutton SignWriting}                             { "1D800} { "1DAAF} {}
 % \BLOCK {Glagolitic Supplement}                          { "1E000} { "1E02F} {}
 % \BLOCK {Nyiakeng Puachue Hmong}                         { "1E100} { "1E14F} {}
@@ -508,28 +508,28 @@
 % \BLOCK {Adlam}                                          { "1E900} { "1E95F} {}
 % \BLOCK {Indic Siyaq Numbers}                            { "1EC70} { "1ECBF} {}
 % \BLOCK {Ottoman Siyaq Numbers}                          { "1ED00} { "1ED4F} {}
-% \BLOCK {Arabic Mathematical Alphabetic Symbols}         { "1EE00} { "1EEFF} {}
-% \BLOCK {Mahjong Tiles}                                  { "1F000} { "1F02F} {}
-% \BLOCK {Domino Tiles}                                   { "1F030} { "1F09F} {}
-% \BLOCK {Playing Cards}                                  { "1F0A0} { "1F0FF} {}
-% \BLOCK {Enclosed Alphanumeric Supplement}               { "1F100} { "1F1FF} {}
-% \BLOCK {Enclosed Ideographic Supplement}                { "1F200} { "1F2FF} {}
-% \BLOCK {Miscellaneous Symbols and Pictographs}          { "1F300} { "1F5FF} {}
-% \BLOCK {Emoticons}                                      { "1F600} { "1F64F} {}
-% \BLOCK {Ornamental Dingbats}                            { "1F650} { "1F67F} {}
-% \BLOCK {Transport and Map Symbols}                      { "1F680} { "1F6FF} {}
-% \BLOCK {Alchemical Symbols}                             { "1F700} { "1F77F} {}
-% \BLOCK {Geometric Shapes Extended}                      { "1F780} { "1F7FF} {}
-% \BLOCK {Supplemental Arrows-C}                          { "1F800} { "1F8FF} {}
-% \BLOCK {Supplemental Symbols and Pictographs}           { "1F900} { "1F9FF} {}
-% \BLOCK {Chess Symbols}                                  { "1FA00} { "1FA6F} {}
-% \BLOCK {Symbols and Pictographs Extended-A}             { "1FA70} { "1FAFF} {}
-% \BLOCK {CJK Unified Ideographs Extension B}             { "20000} { "2A6DF} {shserif,hanamina,hanaminb}
-% \BLOCK {CJK Unified Ideographs Extension C}             { "2A700} { "2B73F} {shserif,hanamina,hanaminb}
-% \BLOCK {CJK Unified Ideographs Extension D}             { "2B740} { "2B81F} {shserif,hanamina,hanaminb}
-% \BLOCK {CJK Unified Ideographs Extension E}             { "2B820} { "2CEAF} {shserif,hanamina,hanaminb}
-% \BLOCK {CJK Unified Ideographs Extension F}             { "2CEB0} { "2EBEF} {shserif,hanamina,hanaminb}
-% \BLOCK {CJK Compatibility Ideographs Supplement}        { "2F800} { "2FA1F} {shserif,hanamina,hanaminb}
+\BLOCK {Arabic Mathematical Alphabetic Symbols}         { "1EE00} { "1EEFF} {xits}
+\BLOCK {Mahjong Tiles}                                  { "1F000} { "1F02F} {noto-symbols2}
+\BLOCK {Domino Tiles}                                   { "1F030} { "1F09F} {noto-symbols2}
+\BLOCK {Playing Cards}                                  { "1F0A0} { "1F0FF} {noto-symbols2}
+\BLOCK {Enclosed Alphanumeric Supplement}               { "1F100} { "1F1FF} {shserif,noto-symbols,noto-emoji,unifont2}
+\BLOCK {Enclosed Ideographic Supplement}                { "1F200} { "1F2FF} {shserif,unifont2}
+\BLOCK {Miscellaneous Symbols and Pictographs}          { "1F300} { "1F5FF} {noto-symbols,noto-symbols2,noto-emoji,unifont2}
+\BLOCK {Emoticons}                                      { "1F600} { "1F64F} {noto-emoji,unifont2}
+\BLOCK {Ornamental Dingbats}                            { "1F650} { "1F67F} {noto-symbols2}
+\BLOCK {Transport and Map Symbols}                      { "1F680} { "1F6FF} {noto-symbols2,noto-emoji,unifont2}
+\BLOCK {Alchemical Symbols}                             { "1F700} { "1F77F} {noto-symbols}
+\BLOCK {Geometric Shapes Extended}                      { "1F780} { "1F7FF} {noto-symbols2,unifont2}
+\BLOCK {Supplemental Arrows-C}                          { "1F800} { "1F8FF} {noto-symbols2}
+\BLOCK {Supplemental Symbols and Pictographs}           { "1F900} { "1F9FF} {noto-symbols2,unifont2}
+\BLOCK {Chess Symbols}                                  { "1FA00} { "1FA6F} {unifont2}
+\BLOCK {Symbols and Pictographs Extended-A}             { "1FA70} { "1FAFF} {unifont2}
+\BLOCK {CJK Unified Ideographs Extension B}             { "20000} { "2A6DF} {shserif,hanamina,hanaminb}
+\BLOCK {CJK Unified Ideographs Extension C}             { "2A700} { "2B73F} {shserif,hanamina,hanaminb}
+\BLOCK {CJK Unified Ideographs Extension D}             { "2B740} { "2B81F} {shserif,hanamina,hanaminb}
+\BLOCK {CJK Unified Ideographs Extension E}             { "2B820} { "2CEAF} {shserif,hanamina,hanaminb}
+\BLOCK {CJK Unified Ideographs Extension F}             { "2CEB0} { "2EBEF} {shserif,hanamina,hanaminb}
+\BLOCK {CJK Compatibility Ideographs Supplement}        { "2F800} { "2FA1F} {shserif,hanamina,hanaminb}
 % \BLOCK {Tags}                                           { "E0000} { "E007F} {}
 % \BLOCK {Variation Selectors Supplement}                 { "E0100} { "E01EF} {}
 % \BLOCK {Supplementary Private Use Area-A}               { "F0000} { "FFFFF} {}
