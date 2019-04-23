@@ -14,5 +14,5 @@
 .DS_Store
 
 .vscode/
-codecharts/data/
+codecharts/data/*.txt
 codecharts/fonts/
