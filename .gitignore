@@ -4,6 +4,9 @@
 *.log
 *.ltjruby
 *.out
+*.synctex.gz
+*.synctex(busy)
+*.toc
 *.xdv
 
 *.otf
