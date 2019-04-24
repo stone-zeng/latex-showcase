@@ -45,14 +45,16 @@ def find_reserved_in_block(block_start, block_end):
             if i[1] == 1:
                 _reserved.append(_item(i[0], i[0]))
             else:
-                _reserved.append(_item(i[0], i[0] + i[1] - 1))
+                _reserved.append(_item(i[0], min(i[0] + i[1] - 1, block_end)))
+        if i[0] < block_start and i[0] + i[1] > block_start:
+            _reserved.append(_item(block_start, i[0] + i[1] - 1))
     return _reserved
 
 def _item(a, b):
     return "{" + to_usv(a) + "} {" + to_usv(b) + "}"
 
 reserved = [(i[0], find_reserved_in_block(*i[1])) for i in blocks]
-reserved = [(i[0], ", ".join(i[1])) for i in reserved if i[1] != []]
+reserved = [(i[0].replace(" ", "~"), ", ".join(i[1])) for i in reserved if i[1] != []]
 
 MAX_BLOCK_NAME_LEN = max([len(i[0]) for i in reserved])
 

@@ -26,8 +26,6 @@
       \prg_return_false:
     \fi:
   }
-\cs_new_protected:Npn \@@_new_font_face:nnn #1#2#3
-  { \exp_args:Nc \newfontface { font @ #1 } {#2} [#3] }
 \cs_new_protected:Npn \@@_font:n #1
   { \use:c { font @ #1 } }
 
@@ -86,11 +84,11 @@
         \int_step_inline:nnn {0} { \l_tmpa_int - 1 }
           { \@@_table:nn { #1 + ##1 * 256 } { #1 + ##1 * 256 + 255 } }
         \@@_table:nn { #1 + \l_tmpa_int * 256 } {#2}
-        \clearpage
+        % \clearpage
       }
       {
         \@@_table:nn {#1} {#2}
-        \clearpage
+        % \clearpage
       }
   }
 
@@ -417,147 +415,147 @@
 \BLOCK {Halfwidth and Fullwidth Forms}                  {  "FF00} {  "FFEF} {shserif}
 \BLOCK {Specials}                                       {  "FFF0} {  "FFFF} {noto,unifont}
 
-% \section{Plane 1}
+\section{Plane 1}
 
-% \BLOCK {Linear B Syllabary}                             { "10000} { "1007F} {noto-linearb}
-% \BLOCK {Linear B Ideograms}                             { "10080} { "100FF} {noto-linearb}
-% % \BLOCK {Aegean Numbers}                                 { "10100} { "1013F} {}
-% % \BLOCK {Ancient Greek Numbers}                          { "10140} { "1018F} {}
-% % \BLOCK {Ancient Symbols}                                { "10190} { "101CF} {}
-% % \BLOCK {Phaistos Disc}                                  { "101D0} { "101FF} {}
-% % \BLOCK {Lycian}                                         { "10280} { "1029F} {}
-% % \BLOCK {Carian}                                         { "102A0} { "102DF} {}
-% % \BLOCK {Coptic Epact Numbers}                           { "102E0} { "102FF} {}
-% % \BLOCK {Old Italic}                                     { "10300} { "1032F} {}
-% % \BLOCK {Gothic}                                         { "10330} { "1034F} {}
-% % \BLOCK {Old Permic}                                     { "10350} { "1037F} {}
-% % \BLOCK {Ugaritic}                                       { "10380} { "1039F} {}
-% % \BLOCK {Old Persian}                                    { "103A0} { "103DF} {}
-% % \BLOCK {Deseret}                                        { "10400} { "1044F} {}
-% % \BLOCK {Shavian}                                        { "10450} { "1047F} {}
-% % \BLOCK {Osmanya}                                        { "10480} { "104AF} {}
-% % \BLOCK {Osage}                                          { "104B0} { "104FF} {}
-% % \BLOCK {Elbasan}                                        { "10500} { "1052F} {}
-% % \BLOCK {Caucasian Albanian}                             { "10530} { "1056F} {}
-% % \BLOCK {Linear A}                                       { "10600} { "1077F} {}
-% % \BLOCK {Cypriot Syllabary}                              { "10800} { "1083F} {}
-% % \BLOCK {Imperial Aramaic}                               { "10840} { "1085F} {}
-% % \BLOCK {Palmyrene}                                      { "10860} { "1087F} {}
-% % \BLOCK {Nabataean}                                      { "10880} { "108AF} {}
-% % \BLOCK {Hatran}                                         { "108E0} { "108FF} {}
-% % \BLOCK {Phoenician}                                     { "10900} { "1091F} {}
-% % \BLOCK {Lydian}                                         { "10920} { "1093F} {}
-% % \BLOCK {Meroitic Hieroglyphs}                           { "10980} { "1099F} {}
-% % \BLOCK {Meroitic Cursive}                               { "109A0} { "109FF} {}
-% % \BLOCK {Kharoshthi}                                     { "10A00} { "10A5F} {}
-% % \BLOCK {Old South Arabian}                              { "10A60} { "10A7F} {}
-% % \BLOCK {Old North Arabian}                              { "10A80} { "10A9F} {}
-% % \BLOCK {Manichaean}                                     { "10AC0} { "10AFF} {}
-% % \BLOCK {Avestan}                                        { "10B00} { "10B3F} {}
-% % \BLOCK {Inscriptional Parthian}                         { "10B40} { "10B5F} {}
-% % \BLOCK {Inscriptional Pahlavi}                          { "10B60} { "10B7F} {}
-% % \BLOCK {Psalter Pahlavi}                                { "10B80} { "10BAF} {}
-% % \BLOCK {Old Turkic}                                     { "10C00} { "10C4F} {}
-% % \BLOCK {Old Hungarian}                                  { "10C80} { "10CFF} {}
-% % \BLOCK {Hanifi Rohingya}                                { "10D00} { "10D3F} {}
-% % \BLOCK {Rumi Numeral Symbols}                           { "10E60} { "10E7F} {}
-% % \BLOCK {Old Sogdian}                                    { "10F00} { "10F2F} {}
-% % \BLOCK {Sogdian}                                        { "10F30} { "10F6F} {}
-% % \BLOCK {Elymaic}                                        { "10FE0} { "10FFF} {}
-% % \BLOCK {Brahmi}                                         { "11000} { "1107F} {}
-% % \BLOCK {Kaithi}                                         { "11080} { "110CF} {}
-% % \BLOCK {Sora Sompeng}                                   { "110D0} { "110FF} {}
-% % \BLOCK {Chakma}                                         { "11100} { "1114F} {}
-% % \BLOCK {Mahajani}                                       { "11150} { "1117F} {}
-% % \BLOCK {Sharada}                                        { "11180} { "111DF} {}
-% % \BLOCK {Sinhala Archaic Numbers}                        { "111E0} { "111FF} {}
-% % \BLOCK {Khojki}                                         { "11200} { "1124F} {}
-% % \BLOCK {Multani}                                        { "11280} { "112AF} {}
-% % \BLOCK {Khudawadi}                                      { "112B0} { "112FF} {}
-% % \BLOCK {Grantha}                                        { "11300} { "1137F} {}
-% % \BLOCK {Newa}                                           { "11400} { "1147F} {}
-% % \BLOCK {Tirhuta}                                        { "11480} { "114DF} {}
-% % \BLOCK {Siddham}                                        { "11580} { "115FF} {}
-% % \BLOCK {Modi}                                           { "11600} { "1165F} {}
-% % \BLOCK {Mongolian Supplement}                           { "11660} { "1167F} {}
-% % \BLOCK {Takri}                                          { "11680} { "116CF} {}
-% % \BLOCK {Ahom}                                           { "11700} { "1173F} {}
-% % \BLOCK {Dogra}                                          { "11800} { "1184F} {}
-% % \BLOCK {Warang Citi}                                    { "118A0} { "118FF} {}
-% % \BLOCK {Nandinagari}                                    { "119A0} { "119FF} {}
-% % \BLOCK {Zanabazar Square}                               { "11A00} { "11A4F} {}
-% % \BLOCK {Soyombo}                                        { "11A50} { "11AAF} {}
-% % \BLOCK {Pau Cin Hau}                                    { "11AC0} { "11AFF} {}
-% % \BLOCK {Bhaiksuki}                                      { "11C00} { "11C6F} {}
-% % \BLOCK {Marchen}                                        { "11C70} { "11CBF} {}
-% % \BLOCK {Masaram Gondi}                                  { "11D00} { "11D5F} {}
-% % \BLOCK {Gunjala Gondi}                                  { "11D60} { "11DAF} {}
-% % \BLOCK {Makasar}                                        { "11EE0} { "11EFF} {}
-% % \BLOCK {Tamil Supplement}                               { "11FC0} { "11FFF} {}
-% % \BLOCK {Cuneiform}                                      { "12000} { "123FF} {}
-% % \BLOCK {Cuneiform Numbers and Punctuation}              { "12400} { "1247F} {}
-% % \BLOCK {Early Dynastic Cuneiform}                       { "12480} { "1254F} {}
-% \BLOCK {Egyptian Hieroglyphs}                           { "13000} { "1342F} {noto-egyptian}
-% % \BLOCK {Egyptian Hieroglyph Format Controls}            { "13430} { "1343F} {}
-% % \BLOCK {Anatolian Hieroglyphs}                          { "14400} { "1467F} {}
-% % \BLOCK {Bamum Supplement}                               { "16800} { "16A3F} {}
-% % \BLOCK {Mro}                                            { "16A40} { "16A6F} {}
-% % \BLOCK {Bassa Vah}                                      { "16AD0} { "16AFF} {}
-% % \BLOCK {Pahawh Hmong}                                   { "16B00} { "16B8F} {}
-% % \BLOCK {Medefaidrin}                                    { "16E40} { "16E9F} {}
-% % \BLOCK {Miao}                                           { "16F00} { "16F9F} {}
-% % \BLOCK {Ideographic Symbols and Punctuation}            { "16FE0} { "16FFF} {}
-% % \BLOCK {Tangut}                                         { "17000} { "187FF} {}
-% % \BLOCK {Tangut Components}                              { "18800} { "18AFF} {}
-% % \BLOCK {Kana Supplement}                                { "1B000} { "1B0FF} {}
-% % \BLOCK {Kana Extended-A}                                { "1B100} { "1B12F} {}
-% % \BLOCK {Small Kana Extension}                           { "1B130} { "1B16F} {}
-% % \BLOCK {Nushu}                                          { "1B170} { "1B2FF} {}
-% % \BLOCK {Duployan}                                       { "1BC00} { "1BC9F} {}
-% % \BLOCK {Shorthand Format Controls}                      { "1BCA0} { "1BCAF} {}
-% % \BLOCK {Byzantine Musical Symbols}                      { "1D000} { "1D0FF} {}
-% % \BLOCK {Musical Symbols}                                { "1D100} { "1D1FF} {}
-% % \BLOCK {Ancient Greek Musical Notation}                 { "1D200} { "1D24F} {}
-% % \BLOCK {Mayan Numerals}                                 { "1D2E0} { "1D2FF} {}
-% % \BLOCK {Tai Xuan Jing Symbols}                          { "1D300} { "1D35F} {}
-% % \BLOCK {Counting Rod Numerals}                          { "1D360} { "1D37F} {}
-% \BLOCK {Mathematical Alphanumeric Symbols}              { "1D400} { "1D7FF} {xits}
-% % \BLOCK {Sutton SignWriting}                             { "1D800} { "1DAAF} {}
-% % \BLOCK {Glagolitic Supplement}                          { "1E000} { "1E02F} {}
-% % \BLOCK {Nyiakeng Puachue Hmong}                         { "1E100} { "1E14F} {}
-% % \BLOCK {Wancho}                                         { "1E2C0} { "1E2FF} {}
-% % \BLOCK {Mende Kikakui}                                  { "1E800} { "1E8DF} {}
-% % \BLOCK {Adlam}                                          { "1E900} { "1E95F} {}
-% % \BLOCK {Indic Siyaq Numbers}                            { "1EC70} { "1ECBF} {}
-% % \BLOCK {Ottoman Siyaq Numbers}                          { "1ED00} { "1ED4F} {}
-% \BLOCK {Arabic Mathematical Alphabetic Symbols}         { "1EE00} { "1EEFF} {xits}
-% \BLOCK {Mahjong Tiles}                                  { "1F000} { "1F02F} {noto-symbols2}
-% \BLOCK {Domino Tiles}                                   { "1F030} { "1F09F} {noto-symbols2}
-% \BLOCK {Playing Cards}                                  { "1F0A0} { "1F0FF} {noto-symbols2}
-% \BLOCK {Enclosed Alphanumeric Supplement}               { "1F100} { "1F1FF} {shserif,noto-symbols,noto-emoji,unifont2}
-% \BLOCK {Enclosed Ideographic Supplement}                { "1F200} { "1F2FF} {shserif,unifont2}
-% \BLOCK {Miscellaneous Symbols and Pictographs}          { "1F300} { "1F5FF} {noto-symbols,noto-symbols2,noto-emoji,unifont2}
-% \BLOCK {Emoticons}                                      { "1F600} { "1F64F} {noto-emoji,unifont2}
-% \BLOCK {Ornamental Dingbats}                            { "1F650} { "1F67F} {noto-symbols2}
-% \BLOCK {Transport and Map Symbols}                      { "1F680} { "1F6FF} {noto-symbols2,noto-emoji,unifont2}
-% \BLOCK {Alchemical Symbols}                             { "1F700} { "1F77F} {noto-symbols}
-% \BLOCK {Geometric Shapes Extended}                      { "1F780} { "1F7FF} {noto-symbols2,unifont2}
-% \BLOCK {Supplemental Arrows-C}                          { "1F800} { "1F8FF} {noto-symbols2}
-% \BLOCK {Supplemental Symbols and Pictographs}           { "1F900} { "1F9FF} {noto-symbols2,unifont2}
-% \BLOCK {Chess Symbols}                                  { "1FA00} { "1FA6F} {unifont2}
-% \BLOCK {Symbols and Pictographs Extended-A}             { "1FA70} { "1FAFF} {unifont2}
+\BLOCK {Linear B Syllabary}                             { "10000} { "1007F} {noto-linearb}
+\BLOCK {Linear B Ideograms}                             { "10080} { "100FF} {noto-linearb}
+\BLOCK {Aegean Numbers}                                 { "10100} { "1013F} {unifont2}
+\BLOCK {Ancient Greek Numbers}                          { "10140} { "1018F} {noto-symbols2}
+\BLOCK {Ancient Symbols}                                { "10190} { "101CF} {noto-symbols2}
+\BLOCK {Phaistos Disc}                                  { "101D0} { "101FF} {noto-symbols2}
+\BLOCK {Lycian}                                         { "10280} { "1029F} {noto-lycian}
+\BLOCK {Carian}                                         { "102A0} { "102DF} {noto-carian}
+\BLOCK {Coptic Epact Numbers}                           { "102E0} { "102FF} {noto-symbols2}
+\BLOCK {Old Italic}                                     { "10300} { "1032F} {noto-olditalic,unifont2}
+\BLOCK {Gothic}                                         { "10330} { "1034F} {noto-gothic}
+\BLOCK {Old Permic}                                     { "10350} { "1037F} {unifont2}
+\BLOCK {Ugaritic}                                       { "10380} { "1039F} {noto-ugaritic}
+\BLOCK {Old Persian}                                    { "103A0} { "103DF} {noto-oldpersian}
+\BLOCK {Deseret}                                        { "10400} { "1044F} {noto-deseret}
+\BLOCK {Shavian}                                        { "10450} { "1047F} {noto-shavian}
+\BLOCK {Osmanya}                                        { "10480} { "104AF} {noto-osmanya}
+\BLOCK {Osage}                                          { "104B0} { "104FF} {noto-osage}
+\BLOCK {Elbasan}                                        { "10500} { "1052F} {unifont2}
+\BLOCK {Caucasian Albanian}                             { "10530} { "1056F} {unifont2}
+\BLOCK {Linear A}                                       { "10600} { "1077F} {unifont2}
+\BLOCK {Cypriot Syllabary}                              { "10800} { "1083F} {noto-cypriot}
+\BLOCK {Imperial Aramaic}                               { "10840} { "1085F} {noto-aramaic}
+\BLOCK {Palmyrene}                                      { "10860} { "1087F} {unifont2}
+\BLOCK {Nabataean}                                      { "10880} { "108AF} {unifont2}
+\BLOCK {Hatran}                                         { "108E0} { "108FF} {unifont2}
+\BLOCK {Phoenician}                                     { "10900} { "1091F} {noto-phoenician}
+\BLOCK {Lydian}                                         { "10920} { "1093F} {noto-lydian}
+\BLOCK {Meroitic Hieroglyphs}                           { "10980} { "1099F} {unifont2}
+\BLOCK {Meroitic Cursive}                               { "109A0} { "109FF} {unifont2}
+\BLOCK {Kharoshthi}                                     { "10A00} { "10A5F} {noto-kharoshthi,unifont2}
+\BLOCK {Old South Arabian}                              { "10A60} { "10A7F} {noto-oldarabian}
+\BLOCK {Old North Arabian}                              { "10A80} { "10A9F} {unifont2}
+\BLOCK {Manichaean}                                     { "10AC0} { "10AFF} {unifont2}
+\BLOCK {Avestan}                                        { "10B00} { "10B3F} {noto-avestan}
+\BLOCK {Inscriptional Parthian}                         { "10B40} { "10B5F} {noto-parthian}
+\BLOCK {Inscriptional Pahlavi}                          { "10B60} { "10B7F} {noto-pahlavi}
+\BLOCK {Psalter Pahlavi}                                { "10B80} { "10BAF} {unifont2}
+\BLOCK {Old Turkic}                                     { "10C00} { "10C4F} {noto-oldturkic}
+\BLOCK {Old Hungarian}                                  { "10C80} { "10CFF} {unifont2}
+\BLOCK {Hanifi Rohingya}                                { "10D00} { "10D3F} {unifont2}
+\BLOCK {Rumi Numeral Symbols}                           { "10E60} { "10E7F} {noto-symbols2}
+\BLOCK {Old Sogdian}                                    { "10F00} { "10F2F} {unifont2}
+\BLOCK {Sogdian}                                        { "10F30} { "10F6F} {unifont2}
+\BLOCK {Elymaic}                                        { "10FE0} { "10FFF} {unifont2}
+\BLOCK {Brahmi}                                         { "11000} { "1107F} {noto-brahmi,unifont2}
+\BLOCK {Kaithi}                                         { "11080} { "110CF} {noto-kaithi,unifont2}
+\BLOCK {Sora Sompeng}                                   { "110D0} { "110FF} {unifont2}
+\BLOCK {Chakma}                                         { "11100} { "1114F} {noto-chakma,unifont2}
+\BLOCK {Mahajani}                                       { "11150} { "1117F} {unifont2}
+\BLOCK {Sharada}                                        { "11180} { "111DF} {unifont2}
+\BLOCK {Sinhala Archaic Numbers}                        { "111E0} { "111FF} {noto-sinhala}
+\BLOCK {Khojki}                                         { "11200} { "1124F} {unifont2}
+\BLOCK {Multani}                                        { "11280} { "112AF} {unifont2}
+\BLOCK {Khudawadi}                                      { "112B0} { "112FF} {unifont2}
+\BLOCK {Grantha}                                        { "11300} { "1137F} {unifont2}
+\BLOCK {Newa}                                           { "11400} { "1147F} {unifont2}
+\BLOCK {Tirhuta}                                        { "11480} { "114DF} {unifont2}
+\BLOCK {Siddham}                                        { "11580} { "115FF} {unifont2}
+\BLOCK {Modi}                                           { "11600} { "1165F} {unifont2}
+\BLOCK {Mongolian Supplement}                           { "11660} { "1167F} {unifont2}
+\BLOCK {Takri}                                          { "11680} { "116CF} {unifont2}
+\BLOCK {Ahom}                                           { "11700} { "1173F} {unifont2}
+\BLOCK {Dogra}                                          { "11800} { "1184F} {unifont2}
+\BLOCK {Warang Citi}                                    { "118A0} { "118FF} {unifont2}
+\BLOCK {Nandinagari}                                    { "119A0} { "119FF} {unifont2}
+\BLOCK {Zanabazar Square}                               { "11A00} { "11A4F} {unifont2}
+\BLOCK {Soyombo}                                        { "11A50} { "11AAF} {unifont2}
+\BLOCK {Pau Cin Hau}                                    { "11AC0} { "11AFF} {unifont2}
+\BLOCK {Bhaiksuki}                                      { "11C00} { "11C6F} {unifont2}
+\BLOCK {Marchen}                                        { "11C70} { "11CBF} {unifont2}
+\BLOCK {Masaram Gondi}                                  { "11D00} { "11D5F} {unifont2}
+\BLOCK {Gunjala Gondi}                                  { "11D60} { "11DAF} {unifont2}
+\BLOCK {Makasar}                                        { "11EE0} { "11EFF} {unifont2}
+\BLOCK {Tamil Supplement}                               { "11FC0} { "11FFF} {unifont2}
+\BLOCK {Cuneiform}                                      { "12000} { "123FF} {noto-cuneiform}
+\BLOCK {Cuneiform Numbers and Punctuation}              { "12400} { "1247F} {noto-cuneiform}
+\BLOCK {Early Dynastic Cuneiform}                       { "12480} { "1254F} {noto-cuneiform}
+\BLOCK {Egyptian Hieroglyphs}                           { "13000} { "1342F} {noto-egyptian}
+\BLOCK {Egyptian Hieroglyph Format Controls}            { "13430} { "1343F} {unifont2}
+\BLOCK {Anatolian Hieroglyphs}                          { "14400} { "1467F} {noto-anatolian}
+\BLOCK {Bamum Supplement}                               { "16800} { "16A3F} {noto-bamum}
+\BLOCK {Mro}                                            { "16A40} { "16A6F} {unifont2}
+\BLOCK {Bassa Vah}                                      { "16AD0} { "16AFF} {unifont2}
+\BLOCK {Pahawh Hmong}                                   { "16B00} { "16B8F} {unifont2}
+\BLOCK {Medefaidrin}                                    { "16E40} { "16E9F} {unifont2}
+\BLOCK {Miao}                                           { "16F00} { "16F9F} {unifont2}
+\BLOCK {Ideographic Symbols and Punctuation}            { "16FE0} { "16FFF} {hanamina,unifont2}
+%%\BLOCK {Tangut}                                         { "17000} { "187FF} {}
+%%\BLOCK {Tangut Components}                              { "18800} { "18AFF} {}
+\BLOCK {Kana Supplement}                                { "1B000} { "1B0FF} {hanamina,unifont2}
+\BLOCK {Kana Extended-A}                                { "1B100} { "1B12F} {hanamina,unifont2}
+%%\BLOCK {Small Kana Extension}                           { "1B130} { "1B16F} {unifont2}
+\BLOCK {Nushu}                                          { "1B170} { "1B2FF} {unifont2}
+\BLOCK {Duployan}                                       { "1BC00} { "1BC9F} {unifont2}
+\BLOCK {Shorthand Format Controls}                      { "1BCA0} { "1BCAF} {unifont2}
+\BLOCK {Byzantine Musical Symbols}                      { "1D000} { "1D0FF} {freeserif,unifont2}
+\BLOCK {Musical Symbols}                                { "1D100} { "1D1FF} {freeserif,unifont2}
+\BLOCK {Ancient Greek Musical Notation}                 { "1D200} { "1D24F} {unifont2}
+\BLOCK {Mayan Numerals}                                 { "1D2E0} { "1D2FF} {unifont2}
+\BLOCK {Tai Xuan Jing Symbols}                          { "1D300} { "1D35F} {noto-symbols2}
+\BLOCK {Counting Rod Numerals}                          { "1D360} { "1D37F} {noto-symbols2,unifont2}
+\BLOCK {Mathematical Alphanumeric Symbols}              { "1D400} { "1D7FF} {xits}
+\BLOCK {Sutton SignWriting}                             { "1D800} { "1DAAF} {unifont2}
+\BLOCK {Glagolitic Supplement}                          { "1E000} { "1E02F} {noto-glagolitic}
+\BLOCK {Nyiakeng Puachue Hmong}                         { "1E100} { "1E14F} {unifont2}
+\BLOCK {Wancho}                                         { "1E2C0} { "1E2FF} {unifont2}
+\BLOCK {Mende Kikakui}                                  { "1E800} { "1E8DF} {unifont2}
+\BLOCK {Adlam}                                          { "1E900} { "1E95F} {noto-adlam,unifont2}
+\BLOCK {Indic Siyaq Numbers}                            { "1EC70} { "1ECBF} {unifont2}
+\BLOCK {Ottoman Siyaq Numbers}                          { "1ED00} { "1ED4F} {unifont2}
+\BLOCK {Arabic Mathematical Alphabetic Symbols}         { "1EE00} { "1EEFF} {xits}
+\BLOCK {Mahjong Tiles}                                  { "1F000} { "1F02F} {noto-symbols2}
+\BLOCK {Domino Tiles}                                   { "1F030} { "1F09F} {noto-symbols2}
+\BLOCK {Playing Cards}                                  { "1F0A0} { "1F0FF} {noto-symbols2}
+\BLOCK {Enclosed Alphanumeric Supplement}               { "1F100} { "1F1FF} {shserif,noto-symbols,noto-emoji,unifont2}
+\BLOCK {Enclosed Ideographic Supplement}                { "1F200} { "1F2FF} {shserif,unifont2}
+\BLOCK {Miscellaneous Symbols and Pictographs}          { "1F300} { "1F5FF} {noto-symbols,noto-symbols2,noto-emoji,unifont2}
+\BLOCK {Emoticons}                                      { "1F600} { "1F64F} {noto-emoji,unifont2}
+\BLOCK {Ornamental Dingbats}                            { "1F650} { "1F67F} {noto-symbols2}
+\BLOCK {Transport and Map Symbols}                      { "1F680} { "1F6FF} {noto-symbols2,noto-emoji,unifont2}
+\BLOCK {Alchemical Symbols}                             { "1F700} { "1F77F} {noto-symbols}
+\BLOCK {Geometric Shapes Extended}                      { "1F780} { "1F7FF} {noto-symbols2,unifont2}
+\BLOCK {Supplemental Arrows-C}                          { "1F800} { "1F8FF} {noto-symbols2}
+\BLOCK {Supplemental Symbols and Pictographs}           { "1F900} { "1F9FF} {noto-symbols2,unifont2}
+\BLOCK {Chess Symbols}                                  { "1FA00} { "1FA6F} {unifont2}
+\BLOCK {Symbols and Pictographs Extended-A}             { "1FA70} { "1FAFF} {unifont2}
 
-% \section{Plane 2}
+\section{Plane 2}
 
-% \BLOCK {CJK Unified Ideographs Extension B}             { "20000} { "2A6DF} {shserif,hanamina,hanaminb}
-% \BLOCK {CJK Unified Ideographs Extension C}             { "2A700} { "2B73F} {shserif,hanamina,hanaminb}
-% \BLOCK {CJK Unified Ideographs Extension D}             { "2B740} { "2B81F} {shserif,hanamina,hanaminb}
-% \BLOCK {CJK Unified Ideographs Extension E}             { "2B820} { "2CEAF} {shserif,hanamina,hanaminb}
-% \BLOCK {CJK Unified Ideographs Extension F}             { "2CEB0} { "2EBEF} {shserif,hanamina,hanaminb}
-% \BLOCK {CJK Compatibility Ideographs Supplement}        { "2F800} { "2FA1F} {shserif,hanamina,hanaminb}
-% % \BLOCK {Tags}                                           { "E0000} { "E007F} {}
-% % \BLOCK {Variation Selectors Supplement}                 { "E0100} { "E01EF} {}
-% % \BLOCK {Supplementary Private Use Area-A}               { "F0000} { "FFFFF} {}
-% % \BLOCK {Supplementary Private Use Area-B}               {"100000} {"10FFFF} {}
+\BLOCK {CJK Unified Ideographs Extension B}             { "20000} { "2A6DF} {shserif,hanamina,hanaminb}
+\BLOCK {CJK Unified Ideographs Extension C}             { "2A700} { "2B73F} {shserif,hanamina,hanaminb}
+\BLOCK {CJK Unified Ideographs Extension D}             { "2B740} { "2B81F} {shserif,hanamina,hanaminb}
+\BLOCK {CJK Unified Ideographs Extension E}             { "2B820} { "2CEAF} {shserif,hanamina,hanaminb}
+\BLOCK {CJK Unified Ideographs Extension F}             { "2CEB0} { "2EBEF} {shserif,hanamina,hanaminb}
+\BLOCK {CJK Compatibility Ideographs Supplement}        { "2F800} { "2FA1F} {shserif,hanamina,hanaminb}
+%%\BLOCK {Tags}                                           { "E0000} { "E007F} {}
+%%\BLOCK {Variation Selectors Supplement}                 { "E0100} { "E01EF} {}
+%%\BLOCK {Supplementary Private Use Area-A}               { "F0000} { "FFFFF} {}
+%%\BLOCK {Supplementary Private Use Area-B}               {"100000} {"10FFFF} {}
 
 \end{document}
