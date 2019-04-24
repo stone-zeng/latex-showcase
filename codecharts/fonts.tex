@@ -1,10 +1,14 @@
 % Helper functions
 \cs_new_protected:Npn \@@_new_font_face:nnn #1#2#3
   { \exp_args:Nc \newfontface { font @ #1 } {#2} [#3] }
+\cs_generate_variant:Nn \@@_new_font_face:nnn { nnx }
 \cs_new_protected:Npn \@@_new_noto_font_face:nnn #1#2#3
-  { \@@_new_font_face:nnn { noto-#1 } { Noto #2 -Regular.ttf } { Path=./fonts/noto/, #3 } }
+  { \@@_new_font_face:nnx { noto-#1 } { Noto #2 -Regular.ttf } { Path=./fonts/noto/, #3 } }
 \cs_new_protected:Npn \@@_new_noto_iii_font_face:nnn #1#2#3
-  { \@@_new_font_face:nnn { noto-#1 } { Noto #2 -Regular.otf } { Path=./fonts/noto-fonts/phaseIII_only/unhinted/otf/Noto #2/, #3 } }
+  { \@@_new_font_face:nnx { noto-#1 } { Noto #2 -Regular.otf } { Path=./fonts/noto-fonts/phaseIII_only/unhinted/otf/Noto #2/, #3 } }
+\cs_new:Npn \@@_color:n #1
+  { Color = #1 }
+\cs_set_eq:NN \@@_color:n \use_none:n
 % In TeX Live
 \@@_new_font_face:nnn { freeserif } { FreeSerif.otf         } {}
 \@@_new_font_face:nnn { xits      } { XITSMath-Regular.otf  } {}
@@ -30,7 +34,7 @@
 \@@_new_noto_font_face:nnn { cypriot     } { SansCypriot               } {}
 \@@_new_noto_font_face:nnn { deseret     } { SansDeseret               } {}
 \@@_new_noto_font_face:nnn { devanagari  } { SerifDevanagari           } {}
-\@@_new_noto_font_face:nnn { emoji       } { Emoji                     } {}
+\@@_new_noto_font_face:nnn { emoji       } { Emoji                     } { \@@_color:n { green } }
 \@@_new_noto_font_face:nnn { ethiopic    } { SerifEthiopic             } {}
 \@@_new_noto_font_face:nnn { georgian    } { SerifGeorgian             } {}
 \@@_new_noto_font_face:nnn { glagolitic  } { SansGlagolitic            } {}
@@ -67,8 +71,8 @@
 \@@_new_noto_font_face:nnn { sinhala     } { SerifSinhala              } {}
 \@@_new_noto_font_face:nnn { sundanese   } { SansSundanese             } {}
 \@@_new_noto_font_face:nnn { sylotinagri } { SansSylotiNagri           } {}
-\@@_new_noto_font_face:nnn { symbols     } { SansSymbols               } {}
-\@@_new_noto_font_face:nnn { symbols2    } { SansSymbols2              } {}
+\@@_new_noto_font_face:nnn { symbols     } { SansSymbols               } { \@@_color:n { red  } }
+\@@_new_noto_font_face:nnn { symbols2    } { SansSymbols2              } { \@@_color:n { blue } }
 \@@_new_noto_font_face:nnn { syriac      } { SansSyriacEastern         } {}
 \@@_new_noto_font_face:nnn { tagalog     } { SansTagalog               } {}
 \@@_new_noto_font_face:nnn { tagbanwa    } { SansTagbanwa              } {}
@@ -86,7 +90,6 @@
 \@@_new_noto_font_face:nnn { yi          } { SansYi                    } {}
 % Google Noto (Phase III only)
 \@@_new_noto_iii_font_face:nnn { music           } { Music                 } {}
-\@@_new_noto_iii_font_face:nnn { tangut          } { SerifTangut           } {}
 \@@_new_noto_iii_font_face:nnn { mro             } { SansMro               } {}
 \@@_new_noto_iii_font_face:nnn { miao            } { SansMiao              } {}
 \@@_new_noto_iii_font_face:nnn { bassavah        } { SansBassaVah          } {}
@@ -123,11 +126,19 @@
 \@@_new_noto_iii_font_face:nnn { duployan        } { SansDuployan          } {}
 \@@_new_noto_iii_font_face:nnn { mendekikakui    } { SansMendeKikakui      } {}
 % Google Noto (alpha)
-\@@_new_font_face:nnn { noto-historic } { NotoSansHistoric-Regular.ttf } { Path=./fonts/noto-fonts/alpha/ }
+\@@_new_font_face:nnn { noto-historic    } { NotoSansHistoric-Regular.ttf } { Path=./fonts/noto-fonts/alpha/ }
 % Other fonts
-\@@_new_font_face:nnn { hanamina      } { HanaMinA.ttf              } { Path=./fonts/ }
-\@@_new_font_face:nnn { hanaminb      } { HanaMinB.ttf              } { Path=./fonts/ }
-\@@_new_font_face:nnn { shsans        } { SourceHanSans.ttc         } { Path=./fonts/, FontIndex=7  }
-\@@_new_font_face:nnn { shserif       } { SourceHanSerif.ttc        } { Path=./fonts/, FontIndex=10 }
-\@@_new_font_face:nnn { unifont       } { unifont-12.0.01.ttf       } { Path=./fonts/, Color=red }
-\@@_new_font_face:nnn { unifont2      } { unifont_upper-12.0.01.ttf } { Path=./fonts/, Color=blue }
+\@@_new_font_face:nnn { aegean           } { Aegean.ttf                   } { Path=./fonts/ }
+\@@_new_font_face:nnn { bs-han           } { BabelStoneHan.ttf            } { Path=./fonts/, \@@_color:n { brown  } }
+\@@_new_font_face:nnn { bs-shapes        } { BabelStoneShapes.ttf         } { Path=./fonts/ }
+\@@_new_font_face:nnn { bs-zanabazar     } { BabelStoneZanabazar.ttf      } { Path=./fonts/ }
+\@@_new_font_face:nnn { hanamina         } { HanaMinA.ttf                 } { Path=./fonts/, \@@_color:n { purple } }
+\@@_new_font_face:nnn { hanaminb         } { HanaMinB.ttf                 } { Path=./fonts/, \@@_color:n { green  } }
+\@@_new_font_face:nnn { shsans           } { SourceHanSans.ttc            } { Path=./fonts/, FontIndex=7  }
+\@@_new_font_face:nnn { shserif          } { SourceHanSerif.ttc           } { Path=./fonts/, FontIndex=10 }
+\@@_new_font_face:nnn { symbola          } { Symbola.ttf                  } { Path=./fonts/, \@@_color:n { olive  } }
+\@@_new_font_face:nnn { tangut           } { TangutYinchuan.ttf           } { Path=./fonts/ }
+\@@_new_font_face:nnn { unifont          } { unifont-12.0.01.ttf          } { Path=./fonts/, \@@_color:n { red    } }
+\@@_new_font_face:nnn { unifont2         } { unifont_upper-12.0.01.ttf    } { Path=./fonts/, \@@_color:n { blue   } }
+% Archived
+% \@@_new_noto_iii_font_face:nnn { tangut          } { SerifTangut           } {}

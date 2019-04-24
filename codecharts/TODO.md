@@ -9,3 +9,4 @@
 - [ ] Page header
 - [ ] Show font list
 - [ ] Classification by languages
+- [ ] CJK Ext G
