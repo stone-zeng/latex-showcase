@@ -249,7 +249,7 @@
 \maketitle
 \tableofcontents
 
-\section{Plane 0}
+\section{Plane 0 --- Basic Multilingual Plane}
 
 \BLOCK {C0 Controls and Basic Latin}                    {  "0000} {  "007F} {noto}
 \BLOCK {C1 Controls and Latin-1 Supplement}             {  "0080} {  "00FF} {noto}
@@ -402,7 +402,7 @@
 %%\BLOCK {High Surrogates}                                {  "D800} {  "DB7F} {}
 %%\BLOCK {High Private Use Surrogates}                    {  "DB80} {  "DBFF} {}
 %%\BLOCK {Low Surrogates}                                 {  "DC00} {  "DFFF} {}
-%%\BLOCK {Private Use Area}                               {  "E000} {  "F8FF} {}
+\BLOCK {Private Use Area}                               {  "E000} {  "F8FF} {lastresort}
 \BLOCK {CJK Compatibility Ideographs}                   {  "F900} {  "FAFF} {shserif,bs-han}
 \BLOCK {Alphabetic Presentation Forms}                  {  "FB00} {  "FB4F} {noto,noto-armenian,noto-hebrew}
 \BLOCK {Arabic Presentation Forms-A}                    {  "FB50} {  "FDFF} {noto-arabic}
@@ -415,7 +415,7 @@
 \BLOCK {Halfwidth and Fullwidth Forms}                  {  "FF00} {  "FFEF} {shserif}
 \BLOCK {Specials}                                       {  "FFF0} {  "FFFF} {noto,bs-han}
 
-\section{Plane 1}
+\section{Plane 1 --- Supplementary Multilingual Plane}
 
 \BLOCK {Linear B Syllabary}                             { "10000} { "1007F} {noto-historic}
 \BLOCK {Linear B Ideograms}                             { "10080} { "100FF} {noto-historic}
@@ -545,7 +545,7 @@
 \BLOCK {Chess Symbols}                                  { "1FA00} { "1FA6F} {symbola}
 \BLOCK {Symbols and Pictographs Extended-A}             { "1FA70} { "1FAFF} {symbola}
 
-\section{Plane 2}
+\section{Plane 2 --- Supplementary Ideographic Plane}
 
 \BLOCK {CJK Unified Ideographs Extension B}             { "20000} { "2A6DF} {shserif,hanamina,hanaminb}
 \BLOCK {CJK Unified Ideographs Extension C}             { "2A700} { "2B73F} {shserif,hanamina,hanaminb}
@@ -553,9 +553,24 @@
 \BLOCK {CJK Unified Ideographs Extension E}             { "2B820} { "2CEAF} {shserif,hanamina,hanaminb}
 \BLOCK {CJK Unified Ideographs Extension F}             { "2CEB0} { "2EBEF} {shserif,hanamina,hanaminb}
 \BLOCK {CJK Compatibility Ideographs Supplement}        { "2F800} { "2FA1F} {shserif,hanamina,hanaminb}
-%%\BLOCK {Tags}                                           { "E0000} { "E007F} {}
+
+%%\section{Plane 3 --- Tertiary Ideographic Plane}
+
+%%\BLOCK {CJK Unified Ideographs Extension G}             { "30000} { "3138F} {lastresort}
+
+\section{Plane 14 --- Supplementary Special-purpose Plane}
+
+\BLOCK {Tags}                                           { "E0000} { "E007F} {lastresort}
 \BLOCK {Variation Selectors Supplement}                 { "E0100} { "E01EF} {bs-han}
-%%\BLOCK {Supplementary Private Use Area-A}               { "F0000} { "FFFFF} {}
-%%\BLOCK {Supplementary Private Use Area-B}               {"100000} {"10FFFF} {}
+
+\section{Plane 15 --- Supplementary Private Use Area-A}
+
+%%\BLOCK {Supplementary Private Use Area-A}               { "F0000} { "FFFFF} {lastresort}
+\BLOCK {Supplementary Private Use Area-A}               { "FFF80} { "FFFFF} {lastresort}
+
+\section{Plane 16 --- Supplementary Private Use Area-B}
+
+%%\BLOCK {Supplementary Private Use Area-B}               {"100000} {"10FFFF} {lastresort}
+\BLOCK {Supplementary Private Use Area-B}               {"10FF80} {"10FFFF} {lastresort}
 
 \end{document}
