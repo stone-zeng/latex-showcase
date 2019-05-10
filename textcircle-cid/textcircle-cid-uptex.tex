@@ -2,12 +2,17 @@
 \documentclass{ujarticle}
 \usepackage{pxchfon,textcircle-cid}
 \setminchofont{KozMinPr6N-Regular.otf}
+\setgothicfont{KozGoPr6N-Regular.otf}
+
+\def\TEST{%
+  \CIDtextcircled{0}
+  \CIDtextblackcircled{1}
+  \CIDtextboxed{00}
+  \CIDtextblackboxed{10}
+  \CIDtextrboxed{50}
+  \CIDtextblackrboxed{100}}
 
 \begin{document}
-\CIDtextcircled     {1}\CIDtextcircled     {01}\CIDtextcircled     {10}\CIDtextcircled     {100}\par
-\CIDtextblackcircled{1}\CIDtextblackcircled{01}\CIDtextblackcircled{10}\CIDtextblackcircled{100}\par
-\CIDtextboxed       {1}\CIDtextboxed       {01}\CIDtextboxed       {10}\CIDtextboxed       {100}\par
-\CIDtextblackboxed  {1}\CIDtextblackboxed  {01}\CIDtextblackboxed  {10}\CIDtextblackboxed  {100}\par
-\CIDtextrboxed      {1}\CIDtextrboxed      {01}\CIDtextrboxed      {10}\CIDtextrboxed      {100}\par
-\CIDtextblackrboxed {1}\CIDtextblackrboxed {01}\CIDtextblackrboxed {10}\CIDtextblackrboxed {100}
+\textmc{\TEST} \par
+\textgt{\TEST}
 \end{document}
