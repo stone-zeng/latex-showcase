@@ -1,6 +1,7 @@
 \RequirePackage{expl3}
 \ProvidesExplPackage{periodic}{2018/12/23}{0.1}{Periodic table for Chinese and Japanese}
 \RequirePackage{array,xeCJK,xeCJKfntef}
+\RequirePackage[table]{xcolor}
 
 \keys_define:nn { periodic }
   {
@@ -152,7 +153,8 @@
   }
 \tl_const:Nn \c_periodic_title_en_tl
   { Periodic~ Table~ of~ the~ Elements }
-
+\definecolor { color@la } { HTML } { CCC0C6 }
+\definecolor { color@ac } { HTML } { 9F8494 }
 
 \prg_new_protected_conditional:Npnn \__periodic_if_lang:n #1 { T, F, TF }
   {
@@ -288,9 +290,11 @@
 \cs_new:Npn \__periodic_table_f:
   {
     \hline \__periodic_table_aux:n  { 55}       &
+           \cellcolor{color@la}
            \__periodic_La_Ac:n      { La}       &
            \__periodic_table_aux:nn { 72} { 86} \\
     \hline \__periodic_table_aux:n  { 87}       &
+           \cellcolor{color@ac}
            \__periodic_La_Ac:n      { Ac}       &
            \__periodic_table_aux:nn {104} {118} \\
     \hline
@@ -307,16 +311,11 @@
 \cs_new_protected:Npn \periodic_table_sub:
   {
     \begin{tabular} {*{15}{|c}|}
-      \hline \__periodic_table_aux:nn { 57} { 71} \\
-      \hline \__periodic_table_aux:nn { 89} {103} \\
+      \hline \rowcolor{color@la} \__periodic_table_aux:nn { 57} { 71} \\
+      \hline \rowcolor{color@ac} \__periodic_table_aux:nn { 89} {103} \\
       \hline
     \end{tabular}
   }
-% \NewDocumentCommand \printelements { }
-%   {
-%     \seq_map_inline:Nn \c_periodic_elements_prop
-%       { \periodic_print_element:nnnnnnnn ##1 }
-%   }
 \cs_new_protected:Npn \periodic_table_set_font:
   {
     \__periodic_if_lang:nTF { zh-cn }
@@ -359,6 +358,6 @@
   }
 
 \ExplSyntaxOff
-\setmainfont{Roboto}
+\setmainfont{Roboto-Regular.otf}[BoldFont=Roboto-Bold.otf]
 \setCJKmainfont{Source Han Sans SC}
 \pagestyle{empty}
