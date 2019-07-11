@@ -1,17 +1,34 @@
 % lualatex nengo.tex
+% See https://twitter.com/ken_lunde/status/1149301059443023878
 
+\PassOptionsToPackage{no-math}{fontspec}
 \documentclass{standalone}
-\usepackage{luatexja,luatexja-fontspec,luatexja-ruby}
-\setmainjfont{Source Han Sans}  % after 2.001
-\ltjsetruby{size=0.35, fontcmd=\jfontspec{Source Han Sans Medium}}
+\usepackage{luatexja,luatexja-fontspec,luatexja-ruby,luatexja-otf}
+\setmainfont{Fira Sans Condensed}[UprightFont=* Light, ItalicFont=* Light Italic, BoldFont=* Regular]
+\setmonofont{M+ 1m light}
+\setmainjfont{Source Han Sans}[UprightFont=* Light, BoldFont=* Medium]
+\newjfontface\rubyfont{Source Han Sans Regular}
+\ltjsetruby{size=0.35, fontcmd=\rubyfont}
 
 \begin{document}
-\centering
-\begin{tabular}{ccl}
-  \ltjruby{令|和}{れい|わ}     & ^^^^32ff & 于時、初春\textbf{令}月、氣淑風\textbf{和} \\
-  \ltjruby{平|成}{へい|せい}   & ^^^^337b & 内\textbf{平}外\textbf{成} \\
-  \ltjruby{昭|和}{しょう|わ}   & ^^^^337c & 百姓\textbf{昭}明、協\textbf{和}萬邦 \\
-  \ltjruby{大|正}{たい|しょう} & ^^^^337d & \textbf{大}亨以\textbf{正}、天之道也 \\
-  \ltjruby{明|治}{めい|じ}     & ^^^^337e & 聖人南面而聴天下、嚮\textbf{明}而\textbf{治} \\
+
+\newcommand{\headformat}{\small\bfseries}
+\newcommand{\codeformat}{\footnotesize\ttfamily}
+\renewcommand{\arraystretch}{1.2}
+
+\newcommand{\tablehead}{\tableHeadAux{\headformat}}
+\newcommand{\tableHeadAux}[8]{%
+  \multicolumn{2}{@{}c}{#1#2} & #1#3 & #1#4 & \multicolumn{2}{c}{#1#5} & \multicolumn{2}{c}{#1#6} & #1#7 & #1#8}
+\newcommand{\tablerow}[8]{%
+  #1 & #2 & \emph{#3} & #4 & \CID{#5} & \codeformat #5 & \CID{#6} & \codeformat #6 & \codeformat U+#7 & #8}
+
+\begin{tabular}{@{}c@{\,--\,}cccc@{\enspace}lc@{\enspace}lcc@{\quad}}
+  \tablehead {Year}        {Era Name} {Ideographs}                   {Horizontal} {Vertical} {Unicode} {Origin}                                       \\
+  \tablerow  {1868} {1912} {Meiji}    {\ltjruby{明|治}{めい|じ}}     {7621}       {12041}    {337E}    {聖人南面而聴天下、嚮\strong{明}而\strong{治}} \\
+  \tablerow  {1912} {1926} {Taishō}   {\ltjruby{大|正}{たい|しょう}} {7622}       {12042}    {337D}    {\strong{大}亨以\strong{正}、天之道也}         \\
+  \tablerow  {1926} {1989} {Shōwa}    {\ltjruby{昭|和}{しょう|わ}}   {7623}       {12043}    {337C}    {百姓\strong{昭}明、協\strong{和}萬邦}         \\
+  \tablerow  {1989} {2019} {Heisei}   {\ltjruby{平|成}{へい|せい}}   {8323}       {12044}    {337B}    {内\strong{平}外\strong{成}}                   \\
+  \tablerow  {2019} {}     {Reiwa}    {\ltjruby{令|和}{れい|わ}}     {23058}      {23059}    {32FF}    {于時、初春\strong{令}月、氣淑風\strong{和}}
 \end{tabular}
+
 \end{document}
