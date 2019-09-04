@@ -33,3 +33,9 @@
 <p align="center">
     <img src="./images/textcircle-cid-xetex.svg" alt="textcircle-cid-xetex" width=75%>
 </p>
+
+## `wenying` - Homework for Wenying Jiangtan 2019 (文瀛讲坛 2019)
+
+<p align="center">
+    <img src="./images/wenying.svg" alt="wenying" width=60%>
+</p>
