@@ -1,5 +1,6 @@
 \documentclass[a4paper]{article}
-\usepackage{fontspec,lettrine,microtype,xcolor}
+\usepackage[no-math]{fontspec}
+\usepackage{lettrine,microtype,xcolor}
 
 \setmainfont{EBGaramond08}[%
   Path        = ./fonts/,
@@ -9,7 +10,7 @@
   Ligatures   = Rare]
 \newfontface\titlefont{EBGaramond12-Regular.otf}[%
   Path        = ./fonts/,
-  LetterSpace = 36]
+  LetterSpace = 42]
 \newfontface\initialfont{EBGaramond-Initials.otf}[Path = ./fonts/]
 
 \setcounter{DefaultLines}{2}
@@ -17,7 +18,7 @@
 \renewcommand{\DefaultFindent}{3pt}
 
 \def\textsuperscript#1{%
-  {\addfontfeatures{VerticalPosition=Ordinal}#1}}
+  \raisebox{-0.2ex}{\addfontfeatures{VerticalPosition=Ordinal}#1}}
 \def\themecolor{\color[HTML]{9D0E00}}
 
 \hyphenation{Af-ghan-i-stan}
@@ -30,7 +31,7 @@
   \fontsize{28}{36}\selectfont
   \titlefont
   \themecolor
-  PREFACE
+  PR\kern-1.2ptE\kern1.2ptFACE
 \end{center}
 
 \vspace{4ex}
@@ -40,11 +41,11 @@
 
 % From https://en.dpm.org.cn/exhibitions/current/2017-03-08/2603.html
 
-\lettrine[lines=3, loversize=-.2, lraise=.2]{\initialfont A}{}\textsc{fghanistan}, boasts a long history of over 5,000 years and a splendid ancient civilization. Exchanges between China and Afghanistan go back a long way. Zhang Qian of the Han dynasty arrived there during his first mission. The Silk Road across the Eurasia landmass further facilitated exchanges between the two countries. In 1978, the celebrated Soviet archaeologist Viktor Sarianidi discovered a number ancient tombs and unearthed 21,618 archaeological discoveries in the world to date.
+\lettrine[lines=3, loversize=-.2, lraise=.2]{\initialfont A}{}\textsc{fghanistan}, boasts a long history of over 5,\kern1pt000 years and a splendid ancient civilization. Exchanges between China and Afghanistan go back a long way. Zhang Qian of the Han dynasty arrived there during his first mission. The Silk Road across the Eurasia landmass further facilitated exchanges between the two countries. In 1978, the celebrated Soviet archaeologist Viktor Sarianidi discovered a number ancient tombs and unearthed 21,\kern1pt618 archaeological discoveries in the world to date.
 
-In October 2016, the World's Ancient Civilizations Protection Forum was successfully held in the Palace Museum, where participants jointly initiated the \textit{Declaration of Supreme Harmony}, which aims to promote the protection and development of human civilizations. The \textit{Declaration} states ``We propose that countries with great ancient civilizations take the lead in cooperating within the strategic framework of national cultural development. This involves taking a firm step towards inheriting ancient civilizations and helping to build barrier-free communication channels between ancient civilizations by holding cultural heritage exhibitions.'' The National Museum of Afghanistan, built in Kabul in 1919 as Afghanistan's largest museum, used to house more than 100,000 sets of precious cultural artifacts. The joint exhibition between the Palace Museum and the National Museum of Afghanistan is not only a significant event in Sino-Afghan cultural exchange, but also marks an important step in the communication of heritages between ancient civilizations.
+In October 2016, the World's Ancient Civilizations Protection Forum was successfully held in the Palace Museum, where participants jointly initiated the \textit{Declaration of Supreme Harmony}, which aims to promote the protection and development of human civilizations. The \textit{Declaration} states ``We propose that countries with great ancient civilizations take the lead in cooperating within the strategic framework of national cultural development. This involves taking a firm step towards inheriting ancient civilizations and helping to build barrier-free communication channels between ancient civilizations by holding cultural heritage exhibitions.'' The National Museum of Afghanistan, built in Kabul in 1919 as Afghanistan's largest museum, used to house more than 100,\kern1pt000 sets of precious cultural artifacts. The joint exhibition between the Palace Museum and the National Museum of Afghanistan is not only a significant event in Sino-\kern-1.2ptAfghan cultural exchange, but also marks an important step in the communication of heritages between ancient civilizations.
 
-This exhibition shows more than 200 precious cultural artifacts, presenting a vivid picture of Afghanistan between the 3\textsuperscript{rd} century \textsc{bce} and the 1\textsuperscript{st} century \textsc{ce}. This is the most vibrant period in Afghan history, also coinciding with the initial phase of the Silk Road. However, some earlier dated objects excavated from Tepe Fullol show Afghan culture in the Bronze Age. Through the exhibition, the audience is able to appreciate the beauty of these cultural artifacts and the culture of the Silk Road, as well as to gain a deep understanding of the rich history and culture of Afghanistan.
+This exhibition shows more than 200 precious cultural artifacts, presenting a vivid picture of Afghanistan between the 3\kern.5pt\textsuperscript{rd} century \textsc{bce} and the 1\kern.2pt\textsuperscript{st} century \textsc{ce}. This is the most vibrant period in Afghan history, also coinciding with the initial phase of the Silk Road. However, some earlier dated objects excavated from Tepe Fullol show Afghan culture in the Bronze Age. Through the exhibition, the audience is able to appreciate the beauty of these cultural artifacts and the culture of the Silk Road, as well as to gain a deep understanding of the rich history and culture of Afghanistan.
 
 \vspace{2ex}
 
