@@ -3,143 +3,148 @@
   { \exp_args:Nc \newfontface { font @ #1 } {#2} [#3] }
 \cs_generate_variant:Nn \@@_new_font_face:nnn { nnx }
 \cs_new_protected:Npn \@@_new_noto_font_face:nnn #1#2#3
-  { \@@_new_font_face:nnx { noto-#1 } { Noto #2 -Regular.ttf } { Path=./fonts/noto/, #3 } }
-\cs_new_protected:Npn \@@_new_noto_iii_font_face:nnn #1#2#3
-  { \@@_new_font_face:nnx { noto-#1 } { Noto #2 -Regular.otf } { Path=./fonts/noto-fonts/phaseIII_only/unhinted/otf/Noto #2/, #3 } }
+  { \@@_new_font_face:nnx { noto-#1 } { Noto #2 -Regular.ttf } { Path=./fonts/noto-fonts/unhinted/Noto #2/, #3 } }
 \cs_new:Npn \@@_color:n #1
   { Color = #1 }
 \cs_set_eq:NN \@@_color:n \use_none:n
 % In TeX Live
 \@@_new_font_face:nnn { freeserif } { FreeSerif.otf         } {}
 \@@_new_font_face:nnn { xits      } { XITSMath-Regular.otf  } {}
-\@@_new_font_face:nnn { noto      } { NotoSerif-Regular.otf } {}
-% Google Note
-\@@_new_noto_font_face:nnn { adlam       } { SansAdlam                 } {}
-\@@_new_noto_font_face:nnn { anatolian   } { SansAnatolianHieroglyphs  } {}
-\@@_new_noto_font_face:nnn { arabic      } { NaskhArabic               } {}
-\@@_new_noto_font_face:nnn { armenian    } { SerifArmenian             } {}
-\@@_new_noto_font_face:nnn { balinese    } { SansBalinese              } {}
-\@@_new_noto_font_face:nnn { bamum       } { SansBamum                 } {}
-\@@_new_noto_font_face:nnn { batak       } { SansBatak                 } {}
-\@@_new_noto_font_face:nnn { bengali     } { SerifBengali              } {}
-\@@_new_noto_font_face:nnn { brahmi      } { SansBrahmi                } {}
-\@@_new_noto_font_face:nnn { buginese    } { SansBuginese              } {}
-\@@_new_noto_font_face:nnn { buhid       } { SansBuhid                 } {}
-\@@_new_noto_font_face:nnn { canadian    } { SansCanadianAboriginal    } {}
-\@@_new_noto_font_face:nnn { chakma      } { SansChakma                } {}
-\@@_new_noto_font_face:nnn { cham        } { SansCham                  } {}
-\@@_new_noto_font_face:nnn { cherokee    } { SansCherokee              } {}
-\@@_new_noto_font_face:nnn { coptic      } { SansCoptic                } {}
-\@@_new_noto_font_face:nnn { cuneiform   } { SansCuneiform             } {}
-\@@_new_noto_font_face:nnn { cypriot     } { SansCypriot               } {}
-\@@_new_noto_font_face:nnn { deseret     } { SansDeseret               } {}
-\@@_new_noto_font_face:nnn { devanagari  } { SerifDevanagari           } {}
-\@@_new_noto_font_face:nnn { emoji       } { Emoji                     } { \@@_color:n { green } }
-\@@_new_noto_font_face:nnn { ethiopic    } { SerifEthiopic             } {}
-\@@_new_noto_font_face:nnn { georgian    } { SerifGeorgian             } {}
-\@@_new_noto_font_face:nnn { glagolitic  } { SansGlagolitic            } {}
-\@@_new_noto_font_face:nnn { gothic      } { SansGothic                } {}
-\@@_new_noto_font_face:nnn { gujarati    } { SerifGujarati             } {}
-\@@_new_noto_font_face:nnn { gurmukhi    } { SansGurmukhi              } {}
-\@@_new_noto_font_face:nnn { hanunoo     } { SansHanunoo               } {}
-\@@_new_noto_font_face:nnn { hebrew      } { SerifHebrew               } {}
-\@@_new_noto_font_face:nnn { javanese    } { SansJavanese              } {}
-\@@_new_noto_font_face:nnn { kaithi      } { SansKaithi                } {}
-\@@_new_noto_font_face:nnn { kannada     } { SerifKannada              } {}
-\@@_new_noto_font_face:nnn { kayahli     } { SansKayahLi               } {}
-\@@_new_noto_font_face:nnn { kharoshthi  } { SansKharoshthi            } {}
-\@@_new_noto_font_face:nnn { khmer       } { SerifKhmer                } {}
-\@@_new_noto_font_face:nnn { lao         } { SerifLao                  } {}
-\@@_new_noto_font_face:nnn { lepcha      } { SansLepcha                } {}
-\@@_new_noto_font_face:nnn { limbu       } { SansLimbu                 } {}
-\@@_new_noto_font_face:nnn { lisu        } { SansLisu                  } {}
-\@@_new_noto_font_face:nnn { malayalam   } { SerifMalayalam            } {}
-\@@_new_noto_font_face:nnn { meeteimayek } { SansMeeteiMayek           } {}
-\@@_new_noto_font_face:nnn { mongolian   } { SansMongolian             } {}
-\@@_new_noto_font_face:nnn { myanmar     } { SerifMyanmar              } {}
-\@@_new_noto_font_face:nnn { newtailue   } { SansNewTaiLue             } {}
-\@@_new_noto_font_face:nnn { nko         } { SansNKo                   } {}
-\@@_new_noto_font_face:nnn { ogham       } { SansOgham                 } {}
-\@@_new_noto_font_face:nnn { olchiki     } { SansOlChiki               } {}
-\@@_new_noto_font_face:nnn { olditalic   } { SansOldItalic             } {}
-\@@_new_noto_font_face:nnn { oriya       } { SansOriya                 } {}
-\@@_new_noto_font_face:nnn { osage       } { SansOsage                 } {}
-\@@_new_noto_font_face:nnn { rejang      } { SansRejang                } {}
-\@@_new_noto_font_face:nnn { runic       } { SansRunic                 } {}
-\@@_new_noto_font_face:nnn { saurashtra  } { SansSaurashtra            } {}
-\@@_new_noto_font_face:nnn { shavian     } { SansShavian               } {}
-\@@_new_noto_font_face:nnn { sinhala     } { SerifSinhala              } {}
-\@@_new_noto_font_face:nnn { sundanese   } { SansSundanese             } {}
-\@@_new_noto_font_face:nnn { sylotinagri } { SansSylotiNagri           } {}
-\@@_new_noto_font_face:nnn { symbols     } { SansSymbols               } { \@@_color:n { red  } }
-\@@_new_noto_font_face:nnn { symbols2    } { SansSymbols2              } { \@@_color:n { blue } }
-\@@_new_noto_font_face:nnn { syriac      } { SansSyriacEastern         } {}
-\@@_new_noto_font_face:nnn { tagalog     } { SansTagalog               } {}
-\@@_new_noto_font_face:nnn { tagbanwa    } { SansTagbanwa              } {}
-\@@_new_noto_font_face:nnn { taile       } { SansTaiLe                 } {}
-\@@_new_noto_font_face:nnn { taitham     } { SansTaiTham               } {}
-\@@_new_noto_font_face:nnn { taiviet     } { SansTaiViet               } {}
-\@@_new_noto_font_face:nnn { tamil       } { SerifTamil                } {}
-\@@_new_noto_font_face:nnn { telugu      } { SerifTelugu               } {}
-\@@_new_noto_font_face:nnn { thaana      } { SansThaana                } {}
-\@@_new_noto_font_face:nnn { thai        } { SerifThai                 } {}
-\@@_new_noto_font_face:nnn { tibetan     } { SansTibetan               } {}
-\@@_new_noto_font_face:nnn { tifinagh    } { SansTifinagh              } {}
-\@@_new_noto_font_face:nnn { ugaritic    } { SansUgaritic              } {}
-\@@_new_noto_font_face:nnn { vai         } { SansVai                   } {}
-\@@_new_noto_font_face:nnn { yi          } { SansYi                    } {}
-% Google Noto (Phase III only)
-\@@_new_noto_iii_font_face:nnn { music           } { Music                 } {}
-\@@_new_noto_iii_font_face:nnn { mro             } { SansMro               } {}
-\@@_new_noto_iii_font_face:nnn { miao            } { SansMiao              } {}
-\@@_new_noto_iii_font_face:nnn { bassavah        } { SansBassaVah          } {}
-\@@_new_noto_iii_font_face:nnn { pahawhhmong     } { SansPahawhHmong       } {}
-\@@_new_noto_iii_font_face:nnn { oldpermic       } { SansOldPermic         } {}
-\@@_new_noto_iii_font_face:nnn { elbasan         } { SansElbasan           } {}
-\@@_new_noto_iii_font_face:nnn { albanian        } { SansCaucasianAlbanian } {}
-\@@_new_noto_iii_font_face:nnn { lineara         } { SansLinearA           } {}
-\@@_new_noto_iii_font_face:nnn { palmyrene       } { SansPalmyrene         } {}
-\@@_new_noto_iii_font_face:nnn { nabataean       } { SansNabataean         } {}
-\@@_new_noto_iii_font_face:nnn { hatran          } { SansHatran            } {}
-\@@_new_noto_iii_font_face:nnn { meroitic        } { SansMeroitic          } {}
-\@@_new_noto_iii_font_face:nnn { oldnortharabian } { SansOldNorthArabian   } {}
-\@@_new_noto_iii_font_face:nnn { psalterpahlavi  } { SansPsalterPahlavi    } {}
-\@@_new_noto_iii_font_face:nnn { oldhungarian    } { SansOldHungarian      } {}
-\@@_new_noto_iii_font_face:nnn { manichaean      } { SansManichaean        } {}
-\@@_new_noto_iii_font_face:nnn { sorasompeng     } { SansSoraSompeng       } {}
-\@@_new_noto_iii_font_face:nnn { mahajani        } { SansMahajani          } {}
-\@@_new_noto_iii_font_face:nnn { sharada         } { SansSharada           } {}
-\@@_new_noto_iii_font_face:nnn { khojki          } { SansKhojki            } {}
-\@@_new_noto_iii_font_face:nnn { multani         } { SansMultani           } {}
-\@@_new_noto_iii_font_face:nnn { khudawadi       } { SansKhudawadi         } {}
-\@@_new_noto_iii_font_face:nnn { grantha         } { SansGrantha           } {}
-\@@_new_noto_iii_font_face:nnn { newa            } { SansNewa              } {}
-\@@_new_noto_iii_font_face:nnn { tirhuta         } { SansTirhuta           } {}
-\@@_new_noto_iii_font_face:nnn { siddham         } { SansSiddham           } {}
-\@@_new_noto_iii_font_face:nnn { modi            } { SansModi              } {}
-\@@_new_noto_iii_font_face:nnn { takri           } { SansTakri             } {}
-\@@_new_noto_iii_font_face:nnn { ahom            } { SerifAhom             } {}
-\@@_new_noto_iii_font_face:nnn { warangciti      } { SansWarangCiti        } {}
-\@@_new_noto_iii_font_face:nnn { paucinhau       } { SansPauCinHau         } {}
-\@@_new_noto_iii_font_face:nnn { bhaiksuki       } { SansBhaiksuki         } {}
-\@@_new_noto_iii_font_face:nnn { marchen         } { SansMarchen           } {}
-\@@_new_noto_iii_font_face:nnn { duployan        } { SansDuployan          } {}
-\@@_new_noto_iii_font_face:nnn { mendekikakui    } { SansMendeKikakui      } {}
-% Google Noto (alpha)
-\@@_new_font_face:nnn { noto-historic    } { NotoSansHistoric-Regular.ttf } { Path=./fonts/noto-fonts/alpha/ }
+\@@_new_font_face:nnn { noto      } { NotoSerif-Regular.ttf } {}
+% Google Noto fonts
+\@@_new_noto_font_face:nnn { adlam             } { SansAdlam                } {}
+\@@_new_noto_font_face:nnn { ahom              } { SerifAhom                } {}
+\@@_new_noto_font_face:nnn { albanian          } { SansCaucasianAlbanian    } {}
+\@@_new_noto_font_face:nnn { anatolian         } { SansAnatolianHieroglyphs } {}
+\@@_new_noto_font_face:nnn { arabic            } { NaskhArabic              } {}
+\@@_new_noto_font_face:nnn { armenian          } { SerifArmenian            } {}
+\@@_new_noto_font_face:nnn { balinese          } { SerifBalinese            } {}
+\@@_new_noto_font_face:nnn { bamum             } { SansBamum                } {}
+\@@_new_noto_font_face:nnn { bassavah          } { SansBassaVah             } {}
+\@@_new_noto_font_face:nnn { batak             } { SansBatak                } {}
+\@@_new_noto_font_face:nnn { bengali           } { SerifBengali             } {}
+\@@_new_noto_font_face:nnn { bhaiksuki         } { SansBhaiksuki            } {}
+\@@_new_noto_font_face:nnn { brahmi            } { SansBrahmi               } {}
+\@@_new_noto_font_face:nnn { buginese          } { SansBuginese             } {}
+\@@_new_noto_font_face:nnn { buhid             } { SansBuhid                } {}
+\@@_new_noto_font_face:nnn { canadian          } { SansCanadianAboriginal   } {}
+\@@_new_noto_font_face:nnn { chakma            } { SansChakma               } {}
+\@@_new_noto_font_face:nnn { cham              } { SansCham                 } {}
+\@@_new_noto_font_face:nnn { cherokee          } { SansCherokee             } {}
+\@@_new_noto_font_face:nnn { coptic            } { SansCoptic               } {}
+\@@_new_noto_font_face:nnn { cuneiform         } { SansCuneiform            } {}
+\@@_new_noto_font_face:nnn { cypriot           } { SansCypriot              } {}
+\@@_new_noto_font_face:nnn { deseret           } { SansDeseret              } {}
+\@@_new_noto_font_face:nnn { devanagari        } { SerifDevanagari          } {}
+\@@_new_noto_font_face:nnn { dogra             } { SerifDogra               } {}
+\@@_new_noto_font_face:nnn { duployan          } { SansDuployan             } {}
+\@@_new_noto_font_face:nnn { elbasan           } { SansElbasan              } {}
+\@@_new_noto_font_face:nnn { ethiopic          } { SerifEthiopic            } {}
+\@@_new_noto_font_face:nnn { georgian          } { SerifGeorgian            } {}
+\@@_new_noto_font_face:nnn { glagolitic        } { SansGlagolitic           } {}
+\@@_new_noto_font_face:nnn { gothic            } { SansGothic               } {}
+\@@_new_noto_font_face:nnn { grantha           } { SansGrantha              } {}
+\@@_new_noto_font_face:nnn { gujarati          } { SerifGujarati            } {}
+\@@_new_noto_font_face:nnn { gunjalagondi      } { SansGunjalaGondi         } {}
+\@@_new_noto_font_face:nnn { gurmukhi          } { SansGurmukhi             } {}
+\@@_new_noto_font_face:nnn { hanifirohingya    } { SansHanifiRohingya       } {}
+\@@_new_noto_font_face:nnn { hanunoo           } { SansHanunoo              } {}
+\@@_new_noto_font_face:nnn { hatran            } { SansHatran               } {}
+\@@_new_noto_font_face:nnn { hebrew            } { SerifHebrew              } {}
+\@@_new_noto_font_face:nnn { indicsiyaqnumbers } { SansIndicSiyaqNumbers    } {}
+\@@_new_noto_font_face:nnn { javanese          } { SansJavanese             } {}
+\@@_new_noto_font_face:nnn { kaithi            } { SansKaithi               } {}
+\@@_new_noto_font_face:nnn { kannada           } { SerifKannada             } {}
+\@@_new_noto_font_face:nnn { kayahli           } { SansKayahLi              } {}
+\@@_new_noto_font_face:nnn { kharoshthi        } { SansKharoshthi           } {}
+\@@_new_noto_font_face:nnn { khmer             } { SerifKhmer               } {}
+\@@_new_noto_font_face:nnn { khojki            } { SansKhojki               } {}
+\@@_new_noto_font_face:nnn { khudawadi         } { SansKhudawadi            } {}
+\@@_new_noto_font_face:nnn { lao               } { SerifLao                 } {}
+\@@_new_noto_font_face:nnn { lepcha            } { SansLepcha               } {}
+\@@_new_noto_font_face:nnn { limbu             } { SansLimbu                } {}
+\@@_new_noto_font_face:nnn { lineara           } { SansLinearA              } {}
+\@@_new_noto_font_face:nnn { lisu              } { SansLisu                 } {}
+\@@_new_noto_font_face:nnn { mahajani          } { SansMahajani             } {}
+\@@_new_noto_font_face:nnn { malayalam         } { SerifMalayalam           } {}
+\@@_new_noto_font_face:nnn { manichaean        } { SansManichaean           } {}
+\@@_new_noto_font_face:nnn { marchen           } { SansMarchen              } {}
+\@@_new_noto_font_face:nnn { masaramgondi      } { SansMasaramGondi         } {}
+\@@_new_noto_font_face:nnn { mayannumerals     } { SansMayanNumerals        } {}
+\@@_new_noto_font_face:nnn { meeteimayek       } { SansMeeteiMayek          } {}
+\@@_new_noto_font_face:nnn { mendekikakui      } { SansMendeKikakui         } {}
+\@@_new_noto_font_face:nnn { meroitic          } { SansMeroitic             } {}
+\@@_new_noto_font_face:nnn { miao              } { SansMiao                 } {}
+\@@_new_noto_font_face:nnn { modi              } { SansModi                 } {}
+\@@_new_noto_font_face:nnn { mongolian         } { SansMongolian            } {}
+\@@_new_noto_font_face:nnn { mro               } { SansMro                  } {}
+\@@_new_noto_font_face:nnn { multani           } { SansMultani              } {}
+\@@_new_noto_font_face:nnn { music             } { Music                    } {}
+\@@_new_noto_font_face:nnn { myanmar           } { SerifMyanmar             } {}
+\@@_new_noto_font_face:nnn { nabataean         } { SansNabataean            } {}
+\@@_new_noto_font_face:nnn { newa              } { SansNewa                 } {}
+\@@_new_noto_font_face:nnn { newtailue         } { SansNewTaiLue            } {}
+\@@_new_noto_font_face:nnn { nko               } { SansNKo                  } {}
+\@@_new_noto_font_face:nnn { ogham             } { SansOgham                } {}
+\@@_new_noto_font_face:nnn { olchiki           } { SansOlChiki              } {}
+\@@_new_noto_font_face:nnn { oldhungarian      } { SansOldHungarian         } {}
+\@@_new_noto_font_face:nnn { olditalic         } { SansOldItalic            } {}
+\@@_new_noto_font_face:nnn { oldnortharabian   } { SansOldNorthArabian      } {}
+\@@_new_noto_font_face:nnn { oldpermic         } { SansOldPermic            } {}
+\@@_new_noto_font_face:nnn { oldsogdian        } { SansOldSogdian           } {}
+\@@_new_noto_font_face:nnn { oriya             } { SansOriya                } {}
+\@@_new_noto_font_face:nnn { osage             } { SansOsage                } {}
+\@@_new_noto_font_face:nnn { pahawhhmong       } { SansPahawhHmong          } {}
+\@@_new_noto_font_face:nnn { palmyrene         } { SansPalmyrene            } {}
+\@@_new_noto_font_face:nnn { paucinhau         } { SansPauCinHau            } {}
+\@@_new_noto_font_face:nnn { psalterpahlavi    } { SansPsalterPahlavi       } {}
+\@@_new_noto_font_face:nnn { rejang            } { SansRejang               } {}
+\@@_new_noto_font_face:nnn { runic             } { SansRunic                } {}
+\@@_new_noto_font_face:nnn { saurashtra        } { SansSaurashtra           } {}
+\@@_new_noto_font_face:nnn { sharada           } { SansSharada              } {}
+\@@_new_noto_font_face:nnn { shavian           } { SansShavian              } {}
+\@@_new_noto_font_face:nnn { siddham           } { SansSiddham              } {}
+\@@_new_noto_font_face:nnn { sinhala           } { SerifSinhala             } {}
+\@@_new_noto_font_face:nnn { sogdian           } { SansSogdian              } {}
+\@@_new_noto_font_face:nnn { sorasompeng       } { SansSoraSompeng          } {}
+\@@_new_noto_font_face:nnn { soyombo           } { SansSoyombo              } {}
+\@@_new_noto_font_face:nnn { sundanese         } { SansSundanese            } {}
+\@@_new_noto_font_face:nnn { sylotinagri       } { SansSylotiNagri          } {}
+\@@_new_noto_font_face:nnn { symbols           } { SansSymbols              } { \@@_color:n { red  } }
+\@@_new_noto_font_face:nnn { symbols2          } { SansSymbols2             } { \@@_color:n { blue } }
+\@@_new_noto_font_face:nnn { syriac            } { SansSyriac               } {}
+\@@_new_noto_font_face:nnn { tagalog           } { SansTagalog              } {}
+\@@_new_noto_font_face:nnn { tagbanwa          } { SansTagbanwa             } {}
+\@@_new_noto_font_face:nnn { taile             } { SansTaiLe                } {}
+\@@_new_noto_font_face:nnn { taitham           } { SansTaiTham              } {}
+\@@_new_noto_font_face:nnn { taiviet           } { SansTaiViet              } {}
+\@@_new_noto_font_face:nnn { takri             } { SansTakri                } {}
+\@@_new_noto_font_face:nnn { tamil             } { SerifTamil               } {}
+\@@_new_noto_font_face:nnn { tamilsupplement   } { SansTamilSupplement      } {}
+\@@_new_noto_font_face:nnn { telugu            } { SerifTelugu              } {}
+\@@_new_noto_font_face:nnn { thaana            } { SansThaana               } {}
+\@@_new_noto_font_face:nnn { thai              } { SerifThai                } {}
+\@@_new_noto_font_face:nnn { tibetan           } { SerifTibetan             } {}
+\@@_new_noto_font_face:nnn { tifinagh          } { SansTifinagh             } {}
+\@@_new_noto_font_face:nnn { tirhuta           } { SansTirhuta              } {}
+\@@_new_noto_font_face:nnn { ugaritic          } { SansUgaritic             } {}
+\@@_new_noto_font_face:nnn { vai               } { SansVai                  } {}
+\@@_new_noto_font_face:nnn { wancho            } { SansWancho               } {}
+\@@_new_noto_font_face:nnn { warangciti        } { SansWarangCiti           } {}
+\@@_new_noto_font_face:nnn { yi                } { SansYi                   } {}
+\@@_new_noto_font_face:nnn { zanabazarsquare   } { SansZanabazarSquare      } {}
+% Google Noto fonts (special)
+\@@_new_font_face:nnn { noto-historic    } { NotoSansHistoric-Regular.ttf } { Path=./fonts/noto-fonts/alpha/        }
+\@@_new_font_face:nnn { noto-emoji       } { NotoEmoji-Regular.ttf        } { Path=./fonts/                         }
 % Other fonts
-\@@_new_font_face:nnn { aegean           } { Aegean.ttf                   } { Path=./fonts/ }
 \@@_new_font_face:nnn { bs-han           } { BabelStoneHan.ttf            } { Path=./fonts/, \@@_color:n { brown  } }
-\@@_new_font_face:nnn { bs-shapes        } { BabelStoneShapes.ttf         } { Path=./fonts/ }
-\@@_new_font_face:nnn { bs-zanabazar     } { BabelStoneZanabazar.ttf      } { Path=./fonts/ }
+\@@_new_font_face:nnn { bs-shapes        } { BabelStoneShapes.ttf         } { Path=./fonts/                         }
 \@@_new_font_face:nnn { hanamina         } { HanaMinA.ttf                 } { Path=./fonts/, \@@_color:n { purple } }
 \@@_new_font_face:nnn { hanaminb         } { HanaMinB.ttf                 } { Path=./fonts/, \@@_color:n { green  } }
-\@@_new_font_face:nnn { lastresort       } { LastResort.ttf               } { Path=./fonts/, Color=lightgray }
-\@@_new_font_face:nnn { shsans           } { SourceHanSans.ttc            } { Path=./fonts/, FontIndex=7  }
-\@@_new_font_face:nnn { shserif          } { SourceHanSerif.ttc           } { Path=./fonts/, FontIndex=10 }
+\@@_new_font_face:nnn { lastresort       } { LastResort.ttf               } { Path=./fonts/, Color=lightgray        }
+\@@_new_font_face:nnn { shsans           } { SourceHan.ttc                } { Path=./fonts/, FontIndex=17           }  % Source Han Sans SC Regular
+\@@_new_font_face:nnn { shserif          } { SourceHan.ttc                } { Path=./fonts/, FontIndex=55           }  % Source Han Serif SC Regular
 \@@_new_font_face:nnn { symbola          } { Symbola.ttf                  } { Path=./fonts/, \@@_color:n { olive  } }
-\@@_new_font_face:nnn { tangut           } { TangutYinchuan.ttf           } { Path=./fonts/ }
-\@@_new_font_face:nnn { unifont          } { unifont-12.0.01.ttf          } { Path=./fonts/, \@@_color:n { red    } }
-\@@_new_font_face:nnn { unifont2         } { unifont_upper-12.0.01.ttf    } { Path=./fonts/, \@@_color:n { blue   } }
-% Archived
-% \@@_new_noto_iii_font_face:nnn { tangut          } { SerifTangut           } {}
+\@@_new_font_face:nnn { tangut           } { TangutYinchuan.ttf           } { Path=./fonts/                         }
+\@@_new_font_face:nnn { unifont          } { unifont-12.1.03.ttf          } { Path=./fonts/, \@@_color:n { red    } }
+\@@_new_font_face:nnn { unifont2         } { unifont_upper-12.1.03.ttf    } { Path=./fonts/, \@@_color:n { blue   } }
