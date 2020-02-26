@@ -1,7 +1,7 @@
 \documentclass{article}
 \PassOptionsToPackage{no-math}{fontspec}
-\PassOptionsToPackage{table}{xcolor}
-\usepackage{fontspec,geometry,makecell,multicol,xcolor,hyperref}
+\usepackage{l3draw,array}
+\usepackage{fontspec,geometry,multicol,xcolor,hyperref}
 % \usepackage{l3benchmark}
 
 \setmainfont{FreeSans}[
@@ -49,6 +49,9 @@
 \dim_const:Nn \c_@@_cell_width_dim  { 36pt }
 \dim_const:Nn \c_@@_cell_height_dim { 34pt }
 \dim_const:Nn \c_@@_cell_depth_dim  {  2pt }
+\dim_const:Nn \c_@@_total_height_dim
+  { \c_@@_cell_height_dim + \c_@@_cell_depth_dim }
+
 \dim_const:Nn \c_@@_table_frame_dim {  2pt }
 
 \int_const:Nn \c_@@_column_int { 16 }
@@ -89,7 +92,7 @@
       {
         \exp_not:n {#1} ~
         ( U+\@@_encoding:n {#2} --
-          U+\@@_encoding:n {#3})
+          U+\@@_encoding:n {#3} )
       }
     \@@_set_font:n {#4}
     \@@_multiple_table:nn {#2} {#3}
@@ -142,18 +145,25 @@
       \int_set:Nn \l_@@_row_int
         { \int_div_truncate:nn { #2 - #1 + 1 } { \c_@@_column_int } }
       \begin{tabular} { V * { \l_@@_column_int } {C|} C V }
-        \@@_table_body:nn {#1} {#2}
+        \@@_frame_hline:
+          \@@_table_body:nn {#1} {#2} \\
+        \@@_frame_hline:
       \end{tabular}
     \end{center}
   }
 \int_new:N \l_@@_row_int
 
+\cs_new:Npn \@@_frame_hline:
+  {
+    \tex_noalign:D
+      { \tex_hrule:D height ~ \c_@@_table_frame_dim \scan_stop: }
+  }
+
 \newcolumntype { C } { @{} c @{} }
 \newcolumntype { V } { @{ \tex_vrule:D width \c_@@_table_frame_dim \scan_stop: } }
 
-\cs_new:Npn \@@_table_body:nn #1#2
+\cs_new_protected:Npn \@@_table_body:nn
   {
-    \Xhline { \c_@@_table_frame_dim }
     \int_compare:nNnTF { \l_@@_column_int + 1 } = \c_@@_column_int
       {
         \int_compare:nNnTF { \l_@@_row_int } > \c_zero_int
@@ -161,8 +171,6 @@
           { \@@_single_row:nn }
       }
       { \@@_row:nn }
-      {#1} {#2} \\
-    \Xhline { \c_@@_table_frame_dim }
   }
 
 \cs_new_protected:Npn \@@_multiple_row:nn #1
@@ -222,27 +230,32 @@
 \cs_new_protected:Npn \@@_cell:n #1
   {
     \@@_unicode_data:n {#1}
-    \@@_cell_box:nnn { \c_@@_cell_width_dim }
+    \@@_cell_box:nnn {#1}
       { \@@_symbol_style: \@@_symbol:n {#1} }
       { \@@_encoding_style: \l_@@_code_point_str }
   }
 \str_new:N \l_@@_code_point_str
 
-% #1 = width, #2 = content, #3 = encoding
-\cs_new_protected:Npn \@@_cell_box:nnn #1#2#3
+\cs_new_protected:Npn \@@_cell_box_symbol:nnn #1#2#3
   {
     \vbox_set_to_ht:Nnn \l_tmpa_box { \c_@@_cell_height_dim }
       {
         \tex_vss:D
-        \hbox_to_wd:nn {#1} { \tex_hss:D #2 \tex_hss:D  }
+        \hbox_to_wd:nn { \c_@@_cell_width_dim }
+          { \tex_hss:D #2 \tex_hss:D }
         \tex_vss:D \nointerlineskip
-        \hbox_to_wd:nn {#1} { \tex_hss:D #3 \tex_hss:D  }
+        \hbox_to_wd:nn { \c_@@_cell_width_dim }
+          { \tex_hss:D #3 \tex_hss:D }
       }
     \box_set_dp:Nn \l_tmpa_box { \c_@@_cell_depth_dim }
     \box_use_drop:N \l_tmpa_box
   }
+\cs_new_eq:NN \@@_cell_box:nnn \@@_cell_box_symbol:nnn
 
-\cs_new_protected:Npn \@@_symbol_simple:n #1
+\cs_new_protected:Npn \@@_set_cell_box:n #1
+  { \cs_set_eq:Nc \@@_cell_box:nnn { @@_cell_box_#1:nnn } }
+
+\cs_new_protected:Npn \@@_symbol:n #1
   {
     \seq_map_inline:Nn \l_@@_font_seq
       {
@@ -256,16 +269,75 @@
     \iow_log:x
       { U+ \l_@@_code_point_str \iow_char:N \ is~missing }
   }
-\cs_new_eq:NN \@@_symbol:n \@@_symbol_simple:n
 
-% #1 = specials type, #2 = color
-\cs_new_protected:Npn \@@_symbol_specials_aux:nn #1#2
+% #1 = specials type, #2 = l3draw
+\cs_new_protected:Npn \@@_symbol_specials:nn #1
   {
-    \cs_new_protected:cpn { @@_symbol_#1:n } ##1
-      { \cellcolor {#2} }
+    \exp_args:Ncc \@@_symbol_specials_aux:NNn
+      { l_@@_#1_cell_box } { @@_cell_box_#1:nnn }
   }
-\@@_symbol_specials_aux:nn { control  } { green      }
-\@@_symbol_specials_aux:nn { reserved } { lightgray  }
+\cs_new_protected:Npn \@@_symbol_specials_aux:NNn #1#2#3
+  {
+    \box_clear_new:N #1
+    \hbox_set:Nn #1
+      {
+        \box_move_down:nn
+          { \c_@@_cell_depth_dim }
+          { \hbox:n {#3} }
+      }
+    \box_set_wd:Nn #1 { \c_zero_dim }
+    \box_set_ht:Nn #1 { \c_@@_cell_height_dim }
+    \box_set_dp:Nn #1 { \c_@@_cell_depth_dim }
+    \cs_new_protected:Npn #2
+      { \@@_special_cell_box:Nnnn #1 }
+  }
+
+\cs_new_protected:Npn \@@_special_cell_box:Nnnn #1#2#3#4
+  {
+    \box_use:N #1
+    \hbox_to_wd:nn { \c_@@_cell_width_dim }
+      { \tex_hss:D #4 \tex_hss:D }
+  }
+
+\@@_symbol_specials:nn { control }
+  {
+    \draw_begin:
+      \draw_path_rectangle:nn
+        { 0pt , 0pt }
+        { \c_@@_cell_width_dim , \c_@@_total_height_dim }
+      \draw_color_fill:n { black!25 }
+      \draw_path_use_clear:n { fill }
+    \draw_end:
+  }
+
+\@@_symbol_specials:nn { reserved }
+  {
+    \draw_begin:
+      \draw_path_rectangle:nn
+        { 0pt , 0pt }
+        { \c_@@_cell_width_dim , \c_@@_total_height_dim }
+      \draw_path_use_clear:n { clip }
+      \draw_path_moveto:n { 0pt , \c_@@_total_height_dim }
+      \draw_path_lineto:n { \c_@@_cell_width_dim , 0pt }
+      \dim_set:Nn \l_tmpa_dim
+        {
+          \dim_max:nn
+            { \c_@@_cell_width_dim }
+            { \c_@@_total_height_dim }
+        }
+      \dim_set:Nn \l_tmpb_dim { \l_tmpa_dim / 20 }
+      \dim_step_inline:nnnn
+        { \l_tmpb_dim } { \l_tmpb_dim } { \l_tmpa_dim / 2 }
+        {
+          \draw_path_moveto:n { #1 , \c_@@_total_height_dim + #1 }
+          \draw_path_lineto:n { \c_@@_cell_width_dim + #1 , #1 }
+          \draw_path_moveto:n { - #1 , \c_@@_total_height_dim - #1 }
+          \draw_path_lineto:n { \c_@@_cell_width_dim - #1 ,  - #1 }
+        }
+      \draw_color_stroke:n { black!50 }
+      \draw_path_use_clear:n { stroke }
+    \draw_end:
+  }
 
 \cs_new:Npn \@@_encoding:n #1
   {
@@ -345,6 +417,7 @@
       { \@@_read_data_auxi:n }
       { \@@_read_data_auxii:n }
   }
+\str_new:N \g_@@_data_str
 
 \cs_new_protected:Npn \@@_read_data_auxi:n
   {
@@ -354,6 +427,7 @@
       { \@@_set_reserved:n }
       { \exp_after:wN \@@_read_data:w \l_@@_data_str \q_stop }
   }
+\str_new:N \l_@@_data_str
 
 \cs_new_protected:Npn \@@_read_data_auxii:n
   {
@@ -373,7 +447,6 @@
     \str_set:Nx \l_@@_code_point_str { \@@_encoding:n {#1} }
     \@@_ann_tooltip:nn { \g_@@_range_str } {#1}
   }
-\str_new:N \l_@@_data_str
 
 \cs_new_protected:Npn \@@_read_data:w #1 ; #2#3 ; #4 \q_stop #5
   {
@@ -404,7 +477,7 @@
   { \cs_new_protected:Npn \@@_control_char:w #1 ; }
   { \token_to_str:N N } ; #2 ; #3 \q_stop
   {
-    \cs_set_eq:NN \@@_symbol:n \@@_symbol_control:n
+    \@@_set_cell_box:n { control }
     \@@_ann_tooltip:nn {#2}
   }
 
@@ -425,7 +498,7 @@
 \cs_new:Npn \@@_code_point:w #1 ; #2 \q_stop { "#1 }
 \str_new:N \g_@@_range_str
 \int_new:N \g_@@_range_int
-\int_gset:Nn \g_@@_range_int { -1 }
+\int_gdecr:N \g_@@_range_int
 
 \cs_new_protected:Npn \@@_seek_data:nnnn #1#2#3#4
   {
@@ -434,12 +507,11 @@
       { \@@_seek_data_forward:n }
       {#4}
   }
-\str_new:N \g_@@_data_str
 
 \cs_new_protected:Npn \@@_set_reserved:n #1
   {
     \str_set:Nx \l_@@_code_point_str { \@@_encoding:n {#1} }
-    \cs_set_eq:NN \@@_symbol:n \@@_symbol_reserved:n
+    \@@_set_cell_box:n { reserved }
     \str_gset_eq:NN \g_@@_data_str \l_@@_data_str
   }
 
@@ -459,10 +531,10 @@
       { \@@_code_point:w #1 \q_stop } < {#2}
       { \ior_map_break:n { \@@_seek_data:nn {#1} {#2} } }
   }
-\cs_new_protected:Npn \@@_seek_data:nn #1#2
+\cs_new_protected:Npn \@@_seek_data:nn #1
   {
     \cs_set_eq:NN \@@_seek_data:nnnn \@@_seek_range:nnnn
-    \@@_read_data:w #1 \q_stop {#2}
+    \@@_read_data:w #1 \q_stop
   }
 \cs_new_protected:Npn \@@_seek_range:nnnn #1#2#3
   {
