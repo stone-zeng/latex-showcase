@@ -317,22 +317,20 @@
         { 0pt , 0pt }
         { \c_@@_cell_width_dim , \c_@@_total_height_dim }
       \draw_path_use_clear:n { clip }
+      \dim_set:Nn \l_tmpa_dim { \c_@@_cell_width_dim / 20 }
+      \dim_set:Nn \l_tmpb_dim { \c_@@_total_height_dim / 20 }
       \draw_path_moveto:n { 0pt , \c_@@_total_height_dim }
       \draw_path_lineto:n { \c_@@_cell_width_dim , 0pt }
-      \dim_set:Nn \l_tmpa_dim
+      \int_step_inline:nn { 10 }
         {
-          \dim_max:nn
-            { \c_@@_cell_width_dim }
-            { \c_@@_total_height_dim }
-        }
-      \dim_set:Nn \l_tmpb_dim { \l_tmpa_dim / 20 }
-      \dim_step_inline:nnnn
-        { \l_tmpb_dim } { \l_tmpb_dim } { \l_tmpa_dim / 2 }
-        {
-          \draw_path_moveto:n { #1 , \c_@@_total_height_dim + #1 }
-          \draw_path_lineto:n { \c_@@_cell_width_dim + #1 , #1 }
-          \draw_path_moveto:n { - #1 , \c_@@_total_height_dim - #1 }
-          \draw_path_lineto:n { \c_@@_cell_width_dim - #1 ,  - #1 }
+          \draw_transform_shift_absolute:n
+            { #1 \l_tmpa_dim , #1 \l_tmpb_dim }
+          \draw_path_moveto:n { 0pt , \c_@@_total_height_dim }
+          \draw_path_lineto:n { \c_@@_cell_width_dim , 0pt }
+          \draw_transform_shift_absolute:n
+            { - #1 \l_tmpa_dim , - #1 \l_tmpb_dim }
+          \draw_path_moveto:n { 0pt , \c_@@_total_height_dim }
+          \draw_path_lineto:n { \c_@@_cell_width_dim , 0pt }
         }
       \draw_color_stroke:n { black!50 }
       \draw_path_use_clear:n { stroke }
