@@ -260,24 +260,53 @@
 % #1 = specials type, #2 = l3draw
 \cs_new_protected:Npn \@@_symbol_specials:nn #1
   {
-    \exp_args:Ncc \@@_symbol_specials_aux:NNn
-      { l_@@_#1_cell_box } { @@_cell_box_#1:nnn }
+    \exp_args:Ncc \@@_symbol_specials_aux:NNnn
+      { g_@@_#1_cell_box } { @@_pdfsavebox_#1: } {#1}
   }
-\cs_new_protected:Npn \@@_symbol_specials_aux:NNn #1#2#3
+\cs_new_protected:Npn \@@_symbol_specials_aux:NNnn #1#2#3#4
   {
-    \box_clear_new:N #1
-    \hbox_set:Nn #1
+    \box_gclear_new:N #1
+    \cs_new_protected:Npn #2
+      {
+        \@@_pdfsavebox:Nnn #1 {#3} {#4}
+        \cs_gset_eq:NN #2 \prg_do_nothing:
+      }
+    \cs_new_protected:cpn { @@_cell_box_#3:nnn }
+      { #2 \@@_special_cell_box:Nnnn #1 }
+  }
+
+\cs_new_protected:Npn \@@_pdfsavebox:Nnn #1#2#3
+  {
+    \@@_pdfxform:nnnnn {#2}
+      { \c_@@_cell_width_dim }
+      { \c_@@_cell_height_dim }
+      { \c_@@_cell_depth_dim }
       {
         \box_move_down:nn
           { \c_@@_cell_depth_dim }
-          { \hbox:n {#3} }
+          { \hbox_overlap_right:n {#3} }
       }
-    \box_set_wd:Nn #1 { \c_zero_dim }
-    \box_set_ht:Nn #1 { \c_@@_cell_height_dim }
-    \box_set_dp:Nn #1 { \c_@@_cell_depth_dim }
-    \cs_new_protected:Npn #2
-      { \@@_special_cell_box:Nnnn #1 }
+    \hbox_gset:Nn #1 { \@@_pdfrefxform:n {#2} }
+    \box_gset_wd:Nn #1 { \c_zero_dim }
+    \box_gset_ht:Nn #1 { \c_@@_cell_height_dim }
+    \box_gset_dp:Nn #1 { \c_@@_cell_depth_dim }
   }
+
+\cs_new_protected:Npn \@@_pdfxform:nnnnn #1#2#3#4#5
+  {
+    \tex_special:D
+      {
+        pdf: bxobj ~ @codecharts@obj@ #1 ~
+          width  ~ \dim_eval:n {#2} ~
+          height ~ \dim_eval:n {#3} ~
+          depth  ~ \dim_eval:n {#4}
+      }
+    #5
+    \tex_special:D { pdf: exobj }
+  }
+
+\cs_new_protected:Npn \@@_pdfrefxform:n #1
+  { \tex_special:D { pdf: uxobj ~ @codecharts@obj@ #1 } }
 
 \cs_new_protected:Npn \@@_special_cell_box:Nnnn #1#2#3#4
   {
