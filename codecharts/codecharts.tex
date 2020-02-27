@@ -40,6 +40,7 @@
   { \c_@@_cell_height_dim + \c_@@_cell_depth_dim }
 
 \dim_const:Nn \c_@@_table_frame_dim {  2pt }
+\dim_const:Nn \c_@@_table_rule_dim  { .4pt }
 
 \int_const:Nn \c_@@_column_int { 16 }
 \int_const:Nn \c_@@_table_int  { 256 }
@@ -127,8 +128,7 @@
       % See https://tex.stackexchange.com/a/198934
       \dim_zero:N \tabcolsep
       \tl_clear:N \@arstrut
-      \setlength \arrayrulewidth
-        { \dim_eval:n { \c_@@_table_frame_dim / 4 } }
+      \setlength \arrayrulewidth { \c_@@_table_rule_dim }
       \int_set:Nn \l_@@_row_int
         { \int_div_truncate:nn { #2 - #1 + 1 } { \c_@@_column_int } }
       \begin{tabular} { V * { \l_@@_column_int } {C|} C V }
@@ -301,28 +301,29 @@
   {
     \draw_begin:
       \draw_path_rectangle:nn
-        { 0pt , 0pt }
+        { \c_@@_table_rule_dim / 2 , \c_@@_table_rule_dim / 2 }
         { \c_@@_cell_width_dim , \c_@@_total_height_dim }
       \draw_path_use_clear:n { clip }
-      \dim_set:Nn \l_tmpa_dim { \c_@@_cell_width_dim / 20 }
-      \dim_set:Nn \l_tmpb_dim { \c_@@_total_height_dim / 20 }
-      \draw_path_moveto:n { 0pt , \c_@@_total_height_dim }
-      \draw_path_lineto:n { \c_@@_cell_width_dim , 0pt }
-      \int_step_inline:nn { 10 }
+      \fp_set:Nn \l_@@_cell_x_fp
+        { \dim_to_fp:n { \c_@@_table_rule_dim + \c_@@_cell_width_dim } }
+      \fp_set:Nn \l_@@_cell_y_fp
+        { \dim_to_fp:n { \c_@@_table_rule_dim + \c_@@_total_height_dim } }
+      \draw_transform_shift_absolute:n
+        { - \l_@@_cell_x_fp / 2 , - \l_@@_cell_y_fp / 2 }
+      \fp_set:Nn \l_tmpa_fp { \l_@@_cell_x_fp / 20 }
+      \fp_set:Nn \l_tmpb_fp { \l_@@_cell_y_fp / 20 }
+      \prg_replicate:nn { 19 }
         {
-          \draw_transform_shift_absolute:n
-            { #1 \l_tmpa_dim , #1 \l_tmpb_dim }
-          \draw_path_moveto:n { 0pt , \c_@@_total_height_dim }
-          \draw_path_lineto:n { \c_@@_cell_width_dim , 0pt }
-          \draw_transform_shift_absolute:n
-            { - #1 \l_tmpa_dim , - #1 \l_tmpb_dim }
-          \draw_path_moveto:n { 0pt , \c_@@_total_height_dim }
-          \draw_path_lineto:n { \c_@@_cell_width_dim , 0pt }
+          \draw_transform_shift:n { \l_tmpa_fp , \l_tmpb_fp }
+          \draw_path_moveto:n { 0 , \l_@@_cell_y_fp }
+          \draw_path_lineto:n { \l_@@_cell_x_fp , 0 }
         }
       \draw_color_stroke:n { black!50 }
       \draw_path_use_clear:n { stroke }
     \draw_end:
   }
+\fp_new:N \l_@@_cell_x_fp
+\fp_new:N \l_@@_cell_y_fp
 
 \cs_new:Npn \@@_encoding:n #1
   {
