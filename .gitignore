@@ -20,5 +20,6 @@
 .vscode/
 codecharts/data/*.txt
 codecharts/fonts/
+han-overlay/*.png
 lxiv/
 wenying/fonts/

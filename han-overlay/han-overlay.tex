@@ -1,0 +1,54 @@
+\documentclass{standalone}
+\usepackage{tikz,xeCJK}
+
+\def\Font{Source Han Serif SC}
+\def\Option{opacity=0.1, color=black}
+
+\setCJKmainfont{\Font}
+
+\begin{document}
+
+\fontsize{200}{200} \selectfont
+
+\ExplSyntaxOn
+
+\clist_set:Nn \c_han_gb_clist
+  {
+    一丁七万丈三上下丌不,
+    与丐丑专且丕世丘丙业,
+    今国意我永然警转酬随风鹰,
+    一乍丘中乎主串互予乃亂丫丐且丈三云上丹了並乘乩乏丁世乖久井不丕乾乞五乙丸之事丞于下七乳二也丑九丟么丙,
+    交仁丐且仲仔丟之乙些主伏什丸予九介丹亮亨事仞也仿任井伐伯付伍上仆伉亙份乞亟企仍丑丕仟亦五以丘仗仄並云仰一丫久他乘享了下不中乖世乏七仕么乳丞互串亂乎亭京件仇丈今仃伕于丁乍二休亥亡仙丙人伊亞代三令乩乃仳乾,
+  }
+
+\clist_map_inline:Nn \c_han_gb_clist
+  {
+    % \centering
+    \begin{tikzpicture}[every node/.style={inner sep=0,outer sep=0}]
+      \node [color=blue!60!black] at (0,0)
+        {
+          \makebox [0pt]
+            {
+              \dim_set:Nn \fboxsep  {0pt}
+              \dim_set:Nn \fboxrule {2pt}
+              \fbox
+                {
+                  \color {white}
+                  \rule {1em} {1em}
+                }
+            }
+        };
+      \exp_args:NNo \node [\Option] at (0,0)
+        {
+          \kern50pt
+          \tl_map_inline:nn {#1} { \makebox [0pt] {##1} }
+          \kern50pt
+        };
+      % \node at (0,-4.2) { \ttfamily \huge \Font,~ \tl_count:n {#1} \ chars };
+      \node at (0,-4.2) { \ttfamily \huge \tl_count:n {#1} };
+    \end{tikzpicture}
+  }
+
+\ExplSyntaxOff
+
+\end{document}

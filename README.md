@@ -8,6 +8,12 @@
     <img src="./images/codecharts-376.svg" alt="codecharts-376" width=30%>
 </p>
 
+## `han-overlay` - Overlay experiments of Chinese characters
+
+<p align="center">
+    <img src="./images/han-overlay.svg" alt="nengo" width=75%>
+</p>
+
 ## `neogo` - Japanese era name (日本年号, げんごう)
 
 <p align="center">
