@@ -1,7 +1,7 @@
 #!/bin/sh
 
-BlocksURL=https://unicode.org/Public/12.1.0/ucd/Blocks-12.1.0d1.txt
-UnicodeDataURL=https://unicode.org/Public/12.1.0/ucd/UnicodeData-12.1.0d2.txt
+BlocksURL=https://unicode.org/Public/13.0.0/ucd/Blocks.txt
+UnicodeDataURL=https://unicode.org/Public/13.0.0/ucd/UnicodeData.txt
 
 if [ "$1" == "-f" ]; then
     curl $BlocksURL      -o Blocks.txt

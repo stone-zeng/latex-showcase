@@ -1,6 +1,5 @@
 import csv
 import os
-
 import sys
 
 UNICODE_DATA_FILE_PATH   = os.sep.join([os.getcwd(), "UnicodeData.txt"])
@@ -32,11 +31,13 @@ def find_reserved_in_block(block_start, block_end):
             0xDC00,    # Low Surrogates
             0xE000,    # Private Use Area
             0x17000,   # Tangut
+            0x18D00,   # Tangut Ideograph Supplement
             0x20000,   # CJK Unified Ideographs Extension B
             0x2A700,   # CJK Unified Ideographs Extension C
             0x2B740,   # CJK Unified Ideographs Extension D
             0x2B820,   # CJK Unified Ideographs Extension E
-            0x2CEB0]:  # CJK Unified Ideographs Extension F
+            0x2CEB0,   # CJK Unified Ideographs Extension F
+            0x30000]:  # CJK Unified Ideographs Extension G
         return _reserved
     for i in code_point_diff:
         if i[0] > block_end:
