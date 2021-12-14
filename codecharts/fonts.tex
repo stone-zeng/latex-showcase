@@ -3,7 +3,9 @@
   { \exp_args:Nc \newfontface { font @ #1 } {#2} [#3] }
 \cs_generate_variant:Nn \@@_new_font_face:nnn { nnx }
 \cs_new_protected:Npn \@@_new_noto_font_face:nnn #1#2#3
-  { \@@_new_font_face:nnx { noto-#1 } { Noto #2 -Regular.otf } { Path=./fonts/noto-fonts/unhinted/otf/Noto #2/, #3 } }
+  { \@@_new_font_face:nnx { noto-#1 } { Noto #2 -Regular.otf } { Path = fonts/noto-fonts/unhinted/otf/Noto #2/, #3 } }
+\cs_new_protected:Npn \@@_new_bs_font_face:nnn #1#2#3
+  { \@@_new_font_face:nnx { bs-#1 } { #2.ttf } { Path = fonts/babelstone/, #3 } }
 \cs_new:Npn \@@_color:n #1
   { Color = #1 }
 \cs_set_eq:NN \@@_color:n \use_none:n
@@ -16,7 +18,6 @@
 \@@_new_noto_font_face:nnn { ahom                  } { SerifAhom                 } {}
 \@@_new_noto_font_face:nnn { anatolianhieroglyphs  } { SansAnatolianHieroglyphs  } {}
 \@@_new_noto_font_face:nnn { arabic                } { NaskhArabic               } {}
-\@@_new_noto_font_face:nnn { sansarabic            } { SansArabic                } {}
 \@@_new_noto_font_face:nnn { armenian              } { SerifArmenian             } {}
 \@@_new_noto_font_face:nnn { avestan               } { SansAvestan               } {}
 \@@_new_noto_font_face:nnn { balinese              } { SerifBalinese             } {}
@@ -91,12 +92,13 @@
 \@@_new_noto_font_face:nnn { miao                  } { SansMiao                  } {}
 \@@_new_noto_font_face:nnn { modi                  } { SansModi                  } {}
 \@@_new_noto_font_face:nnn { mongolian             } { SansMongolian             } {}
-\@@_new_noto_font_face:nnn { mono                  } { Mono                      } {}
+\@@_new_noto_font_face:nnn { mono                  } { SansMono                  } {}
 \@@_new_noto_font_face:nnn { mro                   } { SansMro                   } {}
 \@@_new_noto_font_face:nnn { multani               } { SansMultani               } {}
 \@@_new_noto_font_face:nnn { music                 } { Music                     } {}
 \@@_new_noto_font_face:nnn { myanmar               } { SerifMyanmar              } {}
 \@@_new_noto_font_face:nnn { nabataean             } { SansNabataean             } {}
+\@@_new_noto_font_face:nnn { nandinagari           } { SansNandinagari           } {}
 \@@_new_noto_font_face:nnn { newa                  } { SansNewa                  } {}
 \@@_new_noto_font_face:nnn { newtailue             } { SansNewTaiLue             } {}
 \@@_new_noto_font_face:nnn { nko                   } { SansNKo                   } {}
@@ -145,7 +147,6 @@
 \@@_new_noto_font_face:nnn { takri                 } { SansTakri                 } {}
 \@@_new_noto_font_face:nnn { tamil                 } { SerifTamil                } {}
 \@@_new_noto_font_face:nnn { tamilsupplement       } { SansTamilSupplement       } {}
-% \@@_new_noto_font_face:nnn { tangut                } { SerifTangut               } {}
 \@@_new_noto_font_face:nnn { telugu                } { SerifTelugu               } {}
 \@@_new_noto_font_face:nnn { thaana                } { SansThaana                } {}
 \@@_new_noto_font_face:nnn { thai                  } { SerifThai                 } {}
@@ -156,18 +157,21 @@
 \@@_new_noto_font_face:nnn { vai                   } { SansVai                   } {}
 \@@_new_noto_font_face:nnn { wancho                } { SansWancho                } {}
 \@@_new_noto_font_face:nnn { warangciti            } { SansWarangCiti            } {}
+\@@_new_noto_font_face:nnn { yezidi                } { SerifYezidi               } {}
 \@@_new_noto_font_face:nnn { yi                    } { SansYi                    } {}
 \@@_new_noto_font_face:nnn { zanabazarsquare       } { SansZanabazarSquare       } {}
+% Babelstone fonts
+\@@_new_bs_font_face:nnn { han    } { BabelStoneHan     } { \@@_color:n { brown } }
+\@@_new_bs_font_face:nnn { khitan } { KhitanSmallLinear } {}
+\@@_new_bs_font_face:nnn { tangut } { TangutYinchuan    } {}
 % Other fonts
-\@@_new_font_face:nnn { bs-han           } { BabelStoneHan.ttf            } { Path=./fonts/, \@@_color:n { brown  } }
+\@@_new_font_face:nnn { scheherazade-new } { ScheherazadeNew-Regular.ttf  } { Path=./fonts/ }
 \@@_new_font_face:nnn { glyphs-wiki      } { gw2696945.ttf                } { Path=./fonts/, \@@_color:n { orange } }
 \@@_new_font_face:nnn { hanamina         } { HanaMinA.ttf                 } { Path=./fonts/, \@@_color:n { purple } }
 \@@_new_font_face:nnn { hanaminb         } { HanaMinB.ttf                 } { Path=./fonts/, \@@_color:n { green  } }
-\@@_new_font_face:nnn { khitan           } { KhitanSmallLinear.ttf        } { Path=./fonts/                         }
 \@@_new_font_face:nnn { lastresort       } { LastResort.ttf               } { Path=./fonts/, Color=lightgray        }
-\@@_new_font_face:nnn { shsans           } { SourceHanNotoCJK.ttc         } { Path=./fonts/, FontIndex=17           }  % Source Han Sans SC Regular
-\@@_new_font_face:nnn { shserif          } { SourceHanNotoCJK.ttc         } { Path=./fonts/, FontIndex=55           }  % Source Han Serif SC Regular
+\@@_new_font_face:nnn { shsans           } { Source~ Han~ Sans~ SC        } {}
+\@@_new_font_face:nnn { shserif          } { Source~ Han~ Serif~ SC       } {}
 \@@_new_font_face:nnn { symbola          } { Symbola.ttf                  } { Path=./fonts/, \@@_color:n { olive  } }
-\@@_new_font_face:nnn { tangut           } { TangutYinchuan.ttf           } { Path=./fonts/                         }
-\@@_new_font_face:nnn { unifont          } { unifont-13.0.03.ttf          } { Path=./fonts/, \@@_color:n { red    } }
-\@@_new_font_face:nnn { unifont2         } { unifont_upper-13.0.03.ttf    } { Path=./fonts/, \@@_color:n { blue   } }
+\@@_new_font_face:nnn { unifont          } { unifont-14.0.01.ttf          } { Path=./fonts/, \@@_color:n { red    } }
+\@@_new_font_face:nnn { unifont2         } { unifont_upper-14.0.01.ttf    } { Path=./fonts/, \@@_color:n { blue   } }
